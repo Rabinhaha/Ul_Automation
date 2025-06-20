@@ -1,0 +1,42 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>SET4NPL</groupId>
+  <artifactId>STNPL</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>STNPL</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+ <dependencies>
+    <dependency>
+    <groupId>org.seleniumhq.selenium</groupId>
+    <artifactId>selenium-java</artifactId>
+    </dependency>
+    <dependency>
+    <groupId>org.testng</groupId>
+    <artifactId>testng</artifactId>
+    <scope>test</scope>
+</dependency>
+  </dependencies>
+  <dependencyManagement>
+  	<dependencies>
+  		<dependency>
+  			<groupId>org.seleniumhq.selenium</groupId>
+  			<artifactId>selenium-java</artifactId>
+  			<version>4.30.0</version>
+  		</dependency>
+  		<dependency>
+  			<groupId>org.testng</groupId>
+  			<artifactId>testng</artifactId>
+  			<version>7.11.0</version>
+  		</dependency>
+  	</dependencies>
+  </dependencyManagement>
+</project>
