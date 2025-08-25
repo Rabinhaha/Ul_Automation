@@ -30,7 +30,7 @@ public class VehicleFinancingPage {
     private By partnerBankBranchField = By.xpath("//input[@name='partnerBankBranch']");
     private By hirePurchaseRadio = By.xpath("(//div[@data-slot='radio-group'])[2]/div[2]/button[1]");
     private By fullPaymentRadio = By.xpath("(//div[@data-slot='radio-group'])[2]/div[3]/button[1]");
-    private By vehicleCostField = By.xpath("//label[@class='text-sm mb-2']/following-sibling::input[1]");
+    private By vehicleCostField = By.xpath("//input[@value='']");
     
     // Methods for Vehicle Financing
     public void selectLoanOption() {

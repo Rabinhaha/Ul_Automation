@@ -22,9 +22,9 @@ public class Login extends Base{
 			WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 		    WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@name='email']")));
 		   
-		    emailField.sendKeys("sandipsapkota7171@gmail.com");
+		    emailField.sendKeys("supplier@yopmail.com");
 			// driver.findElement(By.xpath("//input[@name='email']")).sendKeys("tester1@yopmail.com");
-			driver.findElement(By.xpath("//input[@name='password']")).sendKeys("Admin@123");
+			driver.findElement(By.xpath("//input[@name='password']")).sendKeys("Password@123");
 			
 		}
 		else if (role.equals("handlingbnk"))

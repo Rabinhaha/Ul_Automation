@@ -71,7 +71,7 @@ public class practice extends Login{
 	//	wait.until(ExpectedConditions.elementToBeClickable())
 		
 	}
-	//@Test(priority = 2)
+	   //@Test(priority = 2)
 	public void incompletereq() throws InterruptedException
 	{
 		driver=loginAs("handlingbnk");

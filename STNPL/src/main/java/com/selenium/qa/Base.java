@@ -35,7 +35,7 @@ public class Base {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-		driver.get("https://set4nep-dash.vercel.app/login");
+		driver.get("https://staging-portal.set4nepal.org/login");
 		
 		return driver;
 

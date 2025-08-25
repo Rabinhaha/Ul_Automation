@@ -1,37 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="1" passed="0" failed="1" skipped="0">
+<testng-results ignored="2" total="3" passed="0" failed="1" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-06-20T11:25:00 IST" name="Default suite" finished-at="2025-06-20T11:26:04 IST" duration-ms="64246">
+  <suite started-at="2025-08-21T22:21:20 IST" name="Default suite" finished-at="2025-08-21T22:21:47 IST" duration-ms="27111">
     <groups>
     </groups>
-    <test started-at="2025-06-20T11:25:00 IST" name="Default test" finished-at="2025-06-20T11:26:04 IST" duration-ms="64246">
+    <test started-at="2025-08-21T22:21:20 IST" name="Default test" finished-at="2025-08-21T22:21:47 IST" duration-ms="27111">
       <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment">
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment@5bf0d49]" started-at="2025-06-20T11:25:00 IST" name="setup" finished-at="2025-06-20T11:25:09 IST" duration-ms="8808" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment@7c7a06ec]" started-at="2025-08-21T22:21:20 IST" name="setup" finished-at="2025-08-21T22:21:29 IST" duration-ms="8859" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="t1_CreateFundReqasSupplier()[pri:0, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment@5bf0d49]" started-at="2025-06-20T11:25:09 IST" name="t1_CreateFundReqasSupplier" finished-at="2025-06-20T11:26:04 IST" duration-ms="55015" status="FAIL">
-          <exception class="org.openqa.selenium.TimeoutException">
+        <test-method signature="CFR_001()[pri:0, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment@7c7a06ec]" started-at="2025-08-21T22:21:29 IST" name="CFR_001" description="create subsidy req without accesories and with 100 payment " finished-at="2025-08-21T22:21:47 IST" duration-ms="17832" status="FAIL">
+          <exception class="org.openqa.selenium.NoSuchSessionException">
             <message>
-              <![CDATA[Expected condition failed: waiting for element to be clickable: By.xpath: //button[.='Submit'] (tried for 20 second(s) with 500 milliseconds interval)
+              <![CDATA[invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=139.0.7258.128)
 Build info: version: '4.30.0', revision: '509c7f17cc*'
 System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.5'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 137.0.7151.104, chrome: {chromedriverVersion: 137.0.7151.119 (e0ac9d12dff..., userDataDir: C:\Users\User\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:50964}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:50964/devtoo..., se:cdpVersion: 137.0.7151.104, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: a523806bf751dddb92c8a5b24ee16581]]>
+Command: [8928b762ec1424e81167b8692dd7f773, findElement {using=xpath, value=//input[@name='address']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 139.0.7258.128, chrome: {chromedriverVersion: 139.0.7258.138 (884e54ea8d4..., userDataDir: C:\Users\User\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:49177}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:49177/devtoo..., se:cdpVersion: 139.0.7258.128, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8928b762ec1424e81167b8692dd7f773]]>
             </message>
             <full-stacktrace>
-              <![CDATA[org.openqa.selenium.TimeoutException: Expected condition failed: waiting for element to be clickable: By.xpath: //button[.='Submit'] (tried for 20 second(s) with 500 milliseconds interval)
+              <![CDATA[org.openqa.selenium.NoSuchSessionException: invalid session id: session deleted as the browser has closed the connection
+from disconnected: not connected to DevTools
+  (Session info: chrome=139.0.7258.128)
 Build info: version: '4.30.0', revision: '509c7f17cc*'
 System info: os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '21.0.5'
 Driver info: org.openqa.selenium.chrome.ChromeDriver
-Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 137.0.7151.104, chrome: {chromedriverVersion: 137.0.7151.119 (e0ac9d12dff..., userDataDir: C:\Users\User\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:50964}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:50964/devtoo..., se:cdpVersion: 137.0.7151.104, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
-Session ID: a523806bf751dddb92c8a5b24ee16581
-at org.openqa.selenium.support.ui.WebDriverWait.timeoutException(WebDriverWait.java:84)
-at org.openqa.selenium.support.ui.FluentWait.until(FluentWait.java:228)
-at com.selenium.qa.set4npl.objects.FileUploadPage.clickSubmitButton(FileUploadPage.java:115)
-at com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment.t1_CreateFundReqasSupplier(T01_CreateFundReq.java:105)
+Command: [8928b762ec1424e81167b8692dd7f773, findElement {using=xpath, value=//input[@name='address']}]
+Capabilities {acceptInsecureCerts: false, browserName: chrome, browserVersion: 139.0.7258.128, chrome: {chromedriverVersion: 139.0.7258.138 (884e54ea8d4..., userDataDir: C:\Users\User\AppData\Local...}, fedcm:accounts: true, goog:chromeOptions: {debuggerAddress: localhost:49177}, networkConnectionEnabled: false, pageLoadStrategy: normal, platformName: windows, proxy: Proxy(), se:cdp: ws://localhost:49177/devtoo..., se:cdpVersion: 139.0.7258.128, setWindowRect: true, strictFileInteractability: false, timeouts: {implicit: 0, pageLoad: 300000, script: 30000}, unhandledPromptBehavior: dismiss and notify, webauthn:extension:credBlob: true, webauthn:extension:largeBlob: true, webauthn:extension:minPinLength: true, webauthn:extension:prf: true, webauthn:virtualAuthenticators: true}
+Session ID: 8928b762ec1424e81167b8692dd7f773
+at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:502)
+at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:486)
+at org.openqa.selenium.remote.ErrorCodec.decode(ErrorCodec.java:167)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:138)
+at org.openqa.selenium.remote.codec.w3c.W3CHttpResponseCodec.decode(W3CHttpResponseCodec.java:50)
+at org.openqa.selenium.remote.HttpCommandExecutor.execute(HttpCommandExecutor.java:215)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.invokeExecute(DriverCommandExecutor.java:216)
+at org.openqa.selenium.remote.service.DriverCommandExecutor.execute(DriverCommandExecutor.java:174)
+at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:545)
+at org.openqa.selenium.remote.ElementLocation$ElementFinder$2.findElement(ElementLocation.java:165)
+at org.openqa.selenium.remote.ElementLocation.findElement(ElementLocation.java:59)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:368)
+at org.openqa.selenium.remote.RemoteWebDriver.findElement(RemoteWebDriver.java:362)
+at com.selenium.qa.set4npl.objects.CreateFundRequestPage.enterAddress(CreateFundRequestPage.java:79)
+at com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment.common(T01_CreateFundReq.java:79)
+at com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment.CFR_001(T01_CreateFundReq.java:95)
 at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
@@ -60,11 +79,11 @@ at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
 at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
 ]]>
             </full-stacktrace>
-          </exception> <!-- org.openqa.selenium.TimeoutException -->
+          </exception> <!-- org.openqa.selenium.NoSuchSessionException -->
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- t1_CreateFundReqasSupplier -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment@5bf0d49]" started-at="2025-06-20T11:26:04 IST" name="teardown" finished-at="2025-06-20T11:26:04 IST" duration-ms="338" status="PASS">
+        </test-method> <!-- CFR_001 -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment@7c7a06ec]" started-at="2025-08-21T22:21:47 IST" name="teardown" finished-at="2025-08-21T22:21:47 IST" duration-ms="250" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->

@@ -32,6 +32,8 @@ public class FileUploadPage {
     private By signedMaintenanceContract = By.id("upload-signedMaintenanceContract");
     private By ptoIdDocument = By.id("upload-ptoIdDocument");
     private By stickerOnEMBPhoto = By.id("upload-stickerOnEMBPhoto");
+    private By scrappingcertificate=By.id("upload-scrappingCertificate");
+    private By invoicecharger=By.id("upload-chargerInvoice");
     private By optionalDocument = By.id("upload-optionalDocument");
     private By previewButton = By.xpath("//button[.='Preview']");
     private By submitButton = By.xpath("//button[.='Submit']");
@@ -77,7 +79,7 @@ public class FileUploadPage {
         Thread.sleep(1000);
     }
     
-    public void uploadAllRequiredFiles(String filePath) throws InterruptedException {
+    public void uploadAllcommonRequiredFiles(String filePath) throws InterruptedException {
         uploadPtoRegistrationCertificate(filePath);
         uploadSalesAgreement(filePath);
         uploadTransportManagementPermit(filePath);
@@ -89,6 +91,12 @@ public class FileUploadPage {
         js.executeScript("window.scrollTo(0, document.documentElement.scrollHeight);");
         Thread.sleep(1000);
         uploadOptionalDocument(filePath);
+    }
+    public void scrappingfileupload(String filePath) throws InterruptedException
+    {
+    	driver.findElement(scrappingcertificate).sendKeys(filePath);
+    	Thread.sleep(2000);
+    	
     }
  /*   
     public void pressEscapeKey() throws AWTException, InterruptedException {
