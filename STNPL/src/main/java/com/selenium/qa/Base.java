@@ -9,8 +9,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.safari.SafariDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import utils.ConfigReader;
+
 public class Base {
-	public WebDriver driver;
+	public static WebDriver driver;
 	public  WebDriver initializeBrowserAndOpenApplication(String browserName)
 	{
 		if(browserName.equals("chrome"))
@@ -35,9 +37,9 @@ public class Base {
 		driver.manage().window().maximize();
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
-		driver.get("https://staging-portal.set4nepal.org/login");
+		 String url = ConfigReader.get("base.url");
+	        driver.get(url);
 		
 		return driver;
-
 }
 }

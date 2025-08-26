@@ -1,6 +1,7 @@
 package com.selenium.qa.set4npl.empsuplier.fundreq;
 
 import java.awt.AWTException;
+import java.io.File;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -11,6 +12,7 @@ import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import com.selenium.qa.Login;
 import com.selenium.qa.set4npl.objects.CreateFundRequestPage;
@@ -18,30 +20,96 @@ import com.selenium.qa.set4npl.objects.FileUploadPage;
 
 import com.selenium.qa.set4npl.objects.OperationalDetailsPage;
 import com.selenium.qa.set4npl.objects.VehicleFinancingPage;
+
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import utils.ConfigReader;
+@Listeners(utils.AllureTestListener.class)
  class T01_CreateFundReqWithFullPayment extends Login {
     
     WebDriver driver;
     int randomNum1 = ThreadLocalRandom.current().nextInt(1000, 10000);
     String  insertedchassil="chassil" + randomNum1;
-    String date = "25082025";
+    String date = ConfigReader.get("date");
+   
     public String userDir = System.getProperty("user.dir");
-    public  String filePath = userDir + "\\pdffolder\\compat.pdf"; 
+    public String filePath = userDir + File.separator + "pdffolder" + File.separator + "compat.pdf";
+
     // Page Object instances
     CreateFundRequestPage createFundPage;
     VehicleFinancingPage vehicleFinancingPage;
     OperationalDetailsPage operationalDetailsPage;
     FileUploadPage fileUploadPage;
     JavascriptExecutor js;
+  public void hundredperpayment_susidycreation_withoutaccesories() throws InterruptedException
+  {
+	  common();
+      // Step 2: Vehicle Financing
+    js.executeScript("window.scrollBy(0, 150);");
+    vehicleFinancingPage.selectFullPaymentOption();
+    Thread.sleep(500);
+    operationalDetailsPage.selectScrappingYes();
+    js.executeScript("window.scrollBy(0, 150);");
+    vehicleFinancingPage.enterVehicleCost(ConfigReader.get("vehiclecost"));
+
+    js.executeScript("window.scrollBy(0, 250);");
+    
+      operationalDetails();
+
+    driver.findElement(By.id("no-charger")).click();
+    
   
+    operationalDetailsPage.enterTitleTransferDate(date);
+    operationalDetailsPage.clickNextButton();
+    
+      // Step 4: File Upload
+    fileUploadPage.uploadAllcommonRequiredFiles(filePath);
+    fileUploadPage.scrappingfileupload(filePath);
+    js.executeScript("window.scrollBy(0, 150);");
+  
+  
+ 
+  }
+  public void loan_withoutaccesories_subsidycreation() throws InterruptedException
+  {
+	  common();
+      // Step 2: Vehicle Financing
+    js.executeScript("window.scrollBy(0, 150);");
+    vehicleFinancingPage.selectLoanOption();
+    Thread.sleep(2000);
+    vehicleFinancingPage.enterinterestrate();
+    
+    vehicleFinancingPage.enterVehicleCost(ConfigReader.get("vehiclecost"));
+    vehicleFinancingPage.enterLoanNumber("5");
+    Thread.sleep(2000);
+    vehicleFinancingPage.hirepurchasedropdown("1-2-3");
+   
+    vehicleFinancingPage.enterPartnerBankBranch("NEPAL");
+    Thread.sleep(2000);
+    vehicleFinancingPage.enterEquityAmount("20000");;
+    operationalDetailsPage.selectScrappingNo();
+    operationalDetails();
+    driver.findElement(By.id("no-charger")).click();
+    operationalDetailsPage.enterTitleTransferDate(date);
+    operationalDetailsPage.clickNextButton();
+    fileUploadPage.uploadAllcommonRequiredFiles(filePath);
+    fileUploadPage.uploadintimationletterpartner(filePath);
+   
+  }
+  public void preview_and_submit() throws InterruptedException
+  {
+	  fileUploadPage.clickPreviewButton();
+	    fileUploadPage.clickSubmitButton();
+	    js.executeScript("window.scrollBy(0, 150);"); 
+  }
     
     @BeforeMethod
     public void setup() {
+
         driver = initializeBrowserAndOpenApplication("chrome");
         driver = loginAs("supplier");
-        //driver.manage().deleteAllCookies();
-      //  driver.navigate().refresh();
+     
         
-        // Initialize page objects
         createFundPage = new CreateFundRequestPage(driver);
         vehicleFinancingPage = new VehicleFinancingPage(driver);
         operationalDetailsPage = new OperationalDetailsPage(driver);
@@ -55,18 +123,18 @@ import com.selenium.qa.set4npl.objects.VehicleFinancingPage;
     }
     public  void common() throws InterruptedException
     {
-    	   // Generate random number for chassis
+    	  
       
-        Thread.sleep(2000);
+        Thread.sleep(500);
           // Step 1: Basic Information
         createFundPage.clickCreateFundRequestButton();
-        Thread.sleep(2000);
+       
         createFundPage.selectEmbModel(1);
-        Thread.sleep(2000);
+     
         createFundPage.enterChassisNumber(insertedchassil);
-        Thread.sleep(2000);
-        createFundPage.enterFirstName("sandip");
-        createFundPage.enterLastName("spt");
+    
+        createFundPage.enterFirstName(ConfigReader.get("firstname"));
+        createFundPage.enterLastName(ConfigReader.get("lastname"));
         
         js.executeScript("window.scrollBy(0, 250);");
         
@@ -81,97 +149,118 @@ import com.selenium.qa.set4npl.objects.VehicleFinancingPage;
     public void operationalDetails()
     {
         // Step 3: Operational Details
-        operationalDetailsPage.enterEmployedPeople("1");
+        operationalDetailsPage.enterEmployedPeople("1"); js.executeScript("window.scrollBy(0, 150);");
         operationalDetailsPage.enterOperatingDaysPerWeek("2");
         js.executeScript("window.scrollBy(0, 150);");
+        operationalDetailsPage.selectPtoReplacingOldYes();
+        operationalDetailsPage.selectMicrobusRadio();
+        operationalDetailsPage.selectPtoReplacingOldYes();
+        operationalDetailsPage.covidno();
+        operationalDetailsPage.ptoowing();
         operationalDetailsPage.enterKmPerDay("44");
         operationalDetailsPage.enterRoute("chit to ktm");
         js.executeScript("window.scrollBy(0, 150);");
         js.executeScript("window.scrollBy(0, 150);");
+        
     }
-    
+    @Severity(SeverityLevel.CRITICAL)
     @Test(priority = 0, invocationCount = 1,description = "create subsidy req without accesories and with 100 payment and check subsidy is created ")
     public void CFR_001() throws InterruptedException, AWTException { 
-           common();
-          // Step 2: Vehicle Financing
-        js.executeScript("window.scrollBy(0, 150);");
-        vehicleFinancingPage.selectFullPaymentOption();
-        Thread.sleep(2000);
-        js.executeScript("window.scrollBy(0, 150);");
-        vehicleFinancingPage.enterVehicleCost("50000");
-        Thread.sleep(2000);
-        js.executeScript("window.scrollBy(0, 250);");
-        
-          // Step 3: Operational Details
-        operationalDetailsPage.selectScrappingYes();
-        driver.findElement(By.id("only-owning")).click();
-       operationalDetailsPage.enterEmployedPeople("1");
-       driver.findElement(By.id("covid-no")).click();
+          
+    	hundredperpayment_susidycreation_withoutaccesories();
+    	preview_and_submit();
+    	checkwheathersusidycreated();
+    }
+    public void checkwheathersusidycreated()
+    {
+    	  WebElement fundRequestHeader = driver.findElement(By.xpath("//h2[.='Fund Request']"));
+
+          // Assert that the element is visible
+          Assert.assertTrue(fundRequestHeader.isDisplayed(), "fund couldnot submitted ");
+    	  WebElement tableBody = driver.findElement(By.tagName("tbody"));
+          List<WebElement> rows = tableBody.findElements(By.tagName("tr"));
+          WebElement lastRow = rows.get(rows.size() - 1);
+          String chassisNo = lastRow.findElements(By.tagName("td")).get(2).getText();
+          System.out.println("featchedchassisNo: "+chassisNo);  
+          
+          
+          //String createdchassil= driver.findElement(By.xpath("//table/tbody/tr[1]/td[3]")).getText();
+          Assert.assertEquals(chassisNo,insertedchassil, "subsidy creation got failed ");
+    }
+    @Severity(SeverityLevel.CRITICAL)
+    @Test(priority = 1,description = "create subsidy with loan without accesories scrapping no")
+    public void CFR_002() throws InterruptedException
+    {
+       loan_withoutaccesories_subsidycreation();
+       preview_and_submit();
+       checkwheathersusidycreated();
+
+    }
+    @Severity(SeverityLevel.CRITICAL)
+    @Test(priority = 2,description = "EMB is financed through Hire-Purchase and equity has been paid by PTO to Partner Bank/Financial Institution and accesories no")
+    public void CFR_003() throws InterruptedException
+
+    {
+    	 common();
+         // Step 2: Vehicle Financing
        js.executeScript("window.scrollBy(0, 150);");
-        operationalDetailsPage.enterOperatingDaysPerWeek("2");
-        js.executeScript("window.scrollBy(0, 150);");
-        operationalDetailsPage.enterKmPerDay("44");
-        operationalDetailsPage.enterRoute("chit to ktm");
+       vehicleFinancingPage.selectHirePurchaseOption();
+       Thread.sleep(2000);
+       vehicleFinancingPage.enterinterestrate();
+       
+       vehicleFinancingPage.enterVehicleCost(ConfigReader.get("vehiclecost"));
+       vehicleFinancingPage.enterLoanNumber("5");
+       Thread.sleep(2000);
+       vehicleFinancingPage.hirepurchasedropdown("1-2-3");
+      
+       vehicleFinancingPage.enterPartnerBankBranch("NEPAL");
+       Thread.sleep(2000);
+       vehicleFinancingPage.enterEquityAmount("20000");;
+       operationalDetailsPage.selectScrappingNo();
+       operationalDetails();
+       driver.findElement(By.id("no-charger")).click();
+       operationalDetailsPage.enterTitleTransferDate(date);
+       operationalDetailsPage.clickNextButton();
+       fileUploadPage.uploadAllcommonRequiredFiles(filePath);
+       fileUploadPage.uploadintimationletterpartner(filePath);
+       fileUploadPage.clickPreviewButton();
+       fileUploadPage.clickSubmitButton();
+       js.executeScript("window.scrollBy(0, 150);"); 
+    	checkwheathersusidycreated();
+    }
+    @Severity(SeverityLevel.CRITICAL)
+    @Test(priority = 3,description = "100 percent payment from pto with accesories charger ")
+public void CFR004() throws InterruptedException
+{
+    	common();
+        // Step 2: Vehicle Financing
+      js.executeScript("window.scrollBy(0, 150);");
+      vehicleFinancingPage.selectFullPaymentOption();
+      Thread.sleep(500);
+      operationalDetailsPage.selectScrappingYes();
+      js.executeScript("window.scrollBy(0, 150);");
+      vehicleFinancingPage.enterVehicleCost(ConfigReader.get("vehiclecost"));
+
+      js.executeScript("window.scrollBy(0, 250);");
+      
+        operationalDetails();
+        operationalDetailsPage.accesoriesyes();
         driver.findElement(By.id("no-charger")).click();
         
-      
+        
         operationalDetailsPage.enterTitleTransferDate(date);
         operationalDetailsPage.clickNextButton();
         
           // Step 4: File Upload
         fileUploadPage.uploadAllcommonRequiredFiles(filePath);
         fileUploadPage.scrappingfileupload(filePath);
+        
         js.executeScript("window.scrollBy(0, 150);");
-        Thread.sleep(1000);
-          //fileUploadPage.pressEscapeKey();
-        fileUploadPage.clickPreviewButton();
-        fileUploadPage.clickSubmitButton();
-         // Locate the element
-        WebElement fundRequestHeader = driver.findElement(By.xpath("//h2[.='Fund Request']"));
-
-          // Assert that the element is visible
-       Assert.assertTrue(fundRequestHeader.isDisplayed(), "fund couldnot submitted ");
-       Thread.sleep(1000);
-       //last row of table
-       WebElement tableBody = driver.findElement(By.tagName("tbody"));
-       List<WebElement> rows = tableBody.findElements(By.tagName("tr"));
-       WebElement lastRow = rows.get(rows.size() - 1);
-       String chassisNo = lastRow.findElements(By.tagName("td")).get(2).getText();
-       System.out.println("featchedchassisNo"+chassisNo);  
-       //String createdchassil= driver.findElement(By.xpath("//table/tbody/tr[1]/td[3]")).getText();
-       Assert.assertEquals(chassisNo,insertedchassil, "subsidy creation got failed ");
-    }
-    @Test(priority = 2,description = "create subsidy with loan without accesories")
-    public void CFR_002() throws InterruptedException
-    {
-    	 common();
-         // Step 2: Vehicle Financing
-       js.executeScript("window.scrollBy(0, 150);");
-       vehicleFinancingPage.selectFullPaymentOption();
-       Thread.sleep(2000);
-       vehicleFinancingPage.enterVehicleCost("500000");
-       Thread.sleep(2000);
-       js.executeScript("window.scrollBy(0, 150);");
-       operationalDetailsPage.selectScrappingYes();
-       operationalDetails();
-       operationalDetailsPage.enterTitleTransferDate(date);
-       operationalDetailsPage.clickNextButton();
-       fileUploadPage.uploadAllcommonRequiredFiles(filePath);
-       js.executeScript("window.scrollBy(0, 150);");
-
-       
-       
+        
     	
-    }
-    @Test
-    public void CFR_003() throws InterruptedException
-    {
-    	common();
-    	js.executeScript("window.scrollBy(0,150);");
-    	vehicleFinancingPage.selectLoanOption();
-    	Thread.sleep(2000);
     	
-    }
+    	
+}
     
  
 }

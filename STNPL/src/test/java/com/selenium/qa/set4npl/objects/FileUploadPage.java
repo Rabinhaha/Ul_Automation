@@ -37,12 +37,18 @@ public class FileUploadPage {
     private By optionalDocument = By.id("upload-optionalDocument");
     private By previewButton = By.xpath("//button[.='Preview']");
     private By submitButton = By.xpath("//button[.='Submit']");
-    
+    private By partnerintimationletter=By.id("upload-intimationLetter");
+  
     // Methods for File Upload
     public void uploadPtoRegistrationCertificate(String filePath) throws InterruptedException {
         driver.findElement(ptoRegistrationCertificate).sendKeys(filePath);
         Thread.sleep(1000);
     }
+    public void uploadintimationletterpartner(String filePath) throws InterruptedException {
+        driver.findElement(partnerintimationletter).sendKeys(filePath);
+        Thread.sleep(1000);
+    }
+    
     
     public void uploadSalesAgreement(String filePath) throws InterruptedException {
         driver.findElement(salesAgreement).sendKeys(filePath);
@@ -98,14 +104,7 @@ public class FileUploadPage {
     	Thread.sleep(2000);
     	
     }
- /*   
-    public void pressEscapeKey() throws AWTException, InterruptedException {
-        Robot robot = new Robot();
-        robot.keyPress(KeyEvent.VK_ESCAPE);
-        robot.keyRelease(KeyEvent.VK_ESCAPE);
-        robot.delay(500);
-        Thread.sleep(2000);
-    }*/
+ 
     //public void up
     public void clickPreviewButton() throws InterruptedException {
     	WebElement previewBtn = wait.until(ExpectedConditions.elementToBeClickable(previewButton));
