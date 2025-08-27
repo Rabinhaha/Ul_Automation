@@ -33,7 +33,7 @@ public class FileUploadPage {
     private By ptoIdDocument = By.id("upload-ptoIdDocument");
     private By stickerOnEMBPhoto = By.id("upload-stickerOnEMBPhoto");
     private By scrappingcertificate=By.id("upload-scrappingCertificate");
-    private By invoicecharger=By.id("upload-chargerInvoice");
+   // private By invoicecharger=By.id("upload-chargerInvoice");
     private By optionalDocument = By.id("upload-optionalDocument");
     private By previewButton = By.xpath("//button[.='Preview']");
     private By submitButton = By.xpath("//button[.='Submit']");
@@ -53,38 +53,39 @@ public class FileUploadPage {
         
     }
     public void uploadPtoRegistrationCertificate(String filePath) throws InterruptedException {
-        driver.findElement(ptoRegistrationCertificate).sendKeys(filePath);
-        Thread.sleep(1000);
-    }
+    	 // WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+    	  Thread.sleep(1000);
+          driver.findElement(ptoRegistrationCertificate) .sendKeys(filePath);
+          Thread.sleep(2000);}
     public void uploadintimationletterpartner(String filePath) throws InterruptedException {
         driver.findElement(partnerintimationletter).sendKeys(filePath);
-        Thread.sleep(1000);
+        Thread.sleep(2000);
     }
     
     
     public void uploadSalesAgreement(String filePath) throws InterruptedException {
         driver.findElement(salesAgreement).sendKeys(filePath);
-        Thread.sleep(1000);
+        Thread.sleep(2000);
     }
     
     public void uploadTransportManagementPermit(String filePath) throws InterruptedException {
         driver.findElement(transportManagementPermit).sendKeys(filePath);
-        Thread.sleep(1000);
+        Thread.sleep(2000);
     }
     
     public void uploadVendorIntimationLetter(String filePath) throws InterruptedException {
         driver.findElement(vendorIntimationLetter).sendKeys(filePath);
-        Thread.sleep(1000);
+        Thread.sleep(2000);
     }
     
     public void uploadSignedMaintenanceContract(String filePath) throws InterruptedException {
         driver.findElement(signedMaintenanceContract).sendKeys(filePath);
-        Thread.sleep(1000);
+        Thread.sleep(2000);
     }
     
     public void uploadPtoIdDocument(String filePath) throws InterruptedException {
         driver.findElement(ptoIdDocument).sendKeys(filePath);
-        Thread.sleep(1000);
+        Thread.sleep(2000);
     }
     
     public void uploadStickerOnEMBPhoto(String filePath) throws InterruptedException {

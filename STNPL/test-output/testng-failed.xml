@@ -5,11 +5,20 @@
     <classes>
       <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment">
         <methods>
+          <include name="CFR_002"/>
+          <include name="CFR006"/>
           <include name="CFR004"/>
           <include name="teardown"/>
           <include name="setup"/>
         </methods>
       </class> <!-- com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment -->
+      <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T02_HANDLINGBANK_TEST">
+        <methods>
+          <include name="incompletereq"/>
+          <include name="teardown"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- com.selenium.qa.set4npl.empsuplier.fundreq.T02_HANDLINGBANK_TEST -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

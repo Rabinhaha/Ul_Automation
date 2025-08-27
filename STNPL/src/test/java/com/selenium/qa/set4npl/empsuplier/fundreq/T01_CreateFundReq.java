@@ -28,8 +28,7 @@ import utils.ConfigReader;
  class T01_CreateFundReqWithFullPayment extends Login {
     
     WebDriver driver;
-    int randomNum1 = ThreadLocalRandom.current().nextInt(1000, 10000);
-    String  insertedchassil="chassil" + randomNum1;
+    String insertedchassil;
     String date = ConfigReader.get("date");
    
     public String userDir = System.getProperty("user.dir");
@@ -106,9 +105,12 @@ import utils.ConfigReader;
     @BeforeMethod
     public void setup() {
 
+
         driver = initializeBrowserAndOpenApplication("chrome");
         driver = loginAs("supplier");
      
+        int randomNum1 = ThreadLocalRandom.current().nextInt(1000, 10000);
+        insertedchassil = "chassis01" + randomNum1;
         
         createFundPage = new CreateFundRequestPage(driver);
         vehicleFinancingPage = new VehicleFinancingPage(driver);

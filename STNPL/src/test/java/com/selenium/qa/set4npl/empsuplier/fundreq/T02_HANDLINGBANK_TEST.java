@@ -12,14 +12,16 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.selenium.qa.Login;
 
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.testng.AllureTestNg;
 import utils.ConfigReader;
-
+@Listeners({AllureTestNg.class})
 public class T02_HANDLINGBANK_TEST extends Login{
 	
 	
