@@ -197,7 +197,7 @@ import utils.ConfigReader;
 
     }
     @Severity(SeverityLevel.CRITICAL)
-    @Test(priority = 2,description = "EMB is financed through Hire-Purchase and equity has been paid by PTO to Partner Bank/Financial Institution and accesories no")
+    @Test(priority = 2,description = "EMB is financed through Hire-Purchase and equity has been paid by PTO to Partner Bank and SCRAPPNG NO, accesories no")
     public void CFR_003() throws InterruptedException
 
     {
@@ -229,8 +229,9 @@ import utils.ConfigReader;
     	checkwheathersusidycreated();
     }
     @Severity(SeverityLevel.CRITICAL)
-    @Test(priority = 3,description = "100 percent payment from pto with accesories charger ")
+    @Test(priority = 3,description = "100 percent payment from pto with accesories  ")
 public void CFR004() throws InterruptedException
+
 {
     	common();
         // Step 2: Vehicle Financing
@@ -240,6 +241,7 @@ public void CFR004() throws InterruptedException
       operationalDetailsPage.selectScrappingYes();
       js.executeScript("window.scrollBy(0, 150);");
       vehicleFinancingPage.enterVehicleCost(ConfigReader.get("vehiclecost"));
+      Thread.sleep(1000);
 
       js.executeScript("window.scrollBy(0, 250);");
       
@@ -254,13 +256,80 @@ public void CFR004() throws InterruptedException
           // Step 4: File Upload
         fileUploadPage.uploadAllcommonRequiredFiles(filePath);
         fileUploadPage.scrappingfileupload(filePath);
+        fileUploadPage.uploadaccessoriesfiles(filePath);
+        preview_and_submit() ;
         
         js.executeScript("window.scrollBy(0, 150);");
-        
+        checkwheathersusidycreated();
     	
     	
     	
 }
-    
+    @Severity(SeverityLevel.CRITICAL)
+    @Test(priority = 4,description = "LOAN NO SCRAPPING CERTIFCATE with accesories  ")
+ public void CFR005 () throws InterruptedException
+ {
+    	  common();
+          // Step 2: Vehicle Financing
+        js.executeScript("window.scrollBy(0, 150);");
+        vehicleFinancingPage.selectLoanOption();
+        Thread.sleep(2000);
+        vehicleFinancingPage.enterinterestrate();
+        
+        vehicleFinancingPage.enterVehicleCost(ConfigReader.get("vehiclecost"));
+        vehicleFinancingPage.enterLoanNumber("5");
+        Thread.sleep(2000);
+        vehicleFinancingPage.hirepurchasedropdown("1-2-3");
+       
+        vehicleFinancingPage.enterPartnerBankBranch("NEPAL");
+        Thread.sleep(2000);
+        vehicleFinancingPage.enterEquityAmount("20000");;
+        operationalDetailsPage.selectScrappingNo();
+        operationalDetailsPage.accesoriesyes();
+        operationalDetails();
+        driver.findElement(By.id("no-charger")).click();
+        operationalDetailsPage.enterTitleTransferDate(date);
+        operationalDetailsPage.clickNextButton();
+        fileUploadPage.uploadAllcommonRequiredFiles(filePath);
+        
+        fileUploadPage.uploadintimationletterpartner(filePath);
+        fileUploadPage.uploadaccessoriesfiles(filePath);
+        preview_and_submit();
+        checkwheathersusidycreated();
+	 
+ }
+    @Severity(SeverityLevel.CRITICAL)
+    @Test(priority = 5,description = "HIRE-PURCHASE WITH SCRAPPING CERTIFCATE with accesories  ")
+    public void CFR006() throws InterruptedException
+    {
+    	  common();
+          // Step 2: Vehicle Financing
+        js.executeScript("window.scrollBy(0, 150);");
+        vehicleFinancingPage.selectHirePurchaseOption();
+        Thread.sleep(2000);
+        vehicleFinancingPage.enterinterestrate();
+        
+        vehicleFinancingPage.enterVehicleCost(ConfigReader.get("vehiclecost"));
+        vehicleFinancingPage.enterLoanNumber("5");
+        Thread.sleep(2000);
+        vehicleFinancingPage.hirepurchasedropdown("1-2-3");
+       
+        vehicleFinancingPage.enterPartnerBankBranch("NEPAL");
+        Thread.sleep(2000);
+        vehicleFinancingPage.enterEquityAmount("20000");;
+        operationalDetailsPage.selectScrappingNo();
+        operationalDetailsPage.accesoriesyes();
+        operationalDetails();
+        driver.findElement(By.id("no-charger")).click();
+        operationalDetailsPage.enterTitleTransferDate(date);
+        operationalDetailsPage.clickNextButton();
+        fileUploadPage.uploadAllcommonRequiredFiles(filePath);
+        
+        fileUploadPage.uploadintimationletterpartner(filePath);
+        fileUploadPage.uploadaccessoriesfiles(filePath);
+        preview_and_submit();
+        checkwheathersusidycreated();
+	 
+    }
  
 }

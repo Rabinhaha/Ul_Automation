@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="2" total="3" passed="1" failed="0" skipped="0">
+<testng-results ignored="5" total="6" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-08-26T17:12:45 NPT" name="Default suite" finished-at="2025-08-26T17:14:25 NPT" duration-ms="99923">
+  <suite started-at="2025-08-27T10:16:33 NPT" name="Default suite" finished-at="2025-08-27T10:18:14 NPT" duration-ms="101061">
     <groups>
     </groups>
-    <test started-at="2025-08-26T17:12:45 NPT" name="Default test" finished-at="2025-08-26T17:14:25 NPT" duration-ms="99923">
+    <test started-at="2025-08-27T10:16:33 NPT" name="Default test" finished-at="2025-08-27T10:18:14 NPT" duration-ms="101061">
       <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment">
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment@16150369]" started-at="2025-08-26T17:12:45 NPT" name="setup" finished-at="2025-08-26T17:13:05 NPT" duration-ms="20110" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment@782859e]" started-at="2025-08-27T10:16:33 NPT" name="setup" finished-at="2025-08-27T10:16:49 NPT" duration-ms="15793" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="CFR_003()[pri:2, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment@16150369]" started-at="2025-08-26T17:13:05 NPT" name="CFR_003" description="EMB is financed through Hire-Purchase and equity has been paid by PTO to Partner Bank/Financial Institution and accesories no" finished-at="2025-08-26T17:14:24 NPT" duration-ms="79444" status="PASS">
+        <test-method signature="CFR006()[pri:5, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment@782859e]" started-at="2025-08-27T10:16:49 NPT" name="CFR006" description="HIRE-PURCHASE WITH SCRAPPING CERTIFCATE with accesories  " finished-at="2025-08-27T10:18:14 NPT" duration-ms="84927" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- CFR_003 -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment@16150369]" started-at="2025-08-26T17:14:24 NPT" name="teardown" finished-at="2025-08-26T17:14:25 NPT" duration-ms="173" status="PASS">
+        </test-method> <!-- CFR006 -->
+        <test-method is-config="true" signature="teardown()[pri:0, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment@782859e]" started-at="2025-08-27T10:18:14 NPT" name="teardown" finished-at="2025-08-27T10:18:14 NPT" duration-ms="146" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- teardown -->

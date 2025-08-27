@@ -46,24 +46,23 @@ public class OperationalDetailsPage {
     private By immobilsercheckbox=By.id("immobilizer");
     private By immobilisertextfield=By.xpath("//input[@name='accessories.immobilizerSerial']");
     private By ledpanelcheckbox=By.id("led-panel");
-    private By ledpaneltextfield=By.xpath("//input[@name='accessories.ledPanelSerial]");
+    private By ledpaneltextfield=By.xpath("//input[@name='accessories.ledPanelSerial']");
     // Methods for Operational Details
     public void accesoriesyes()
     {
     	driver.findElement(acccesoriesyes).click();
-    	 js.executeScript("window.scrollBy(0, 150);");
+    
     	 driver.findElement(eticketingmachinecheckbox).click();
     	 driver.findElement(eticketingmachinefield).sendKeys(TestDataGenerator.getRandometicketing());
-    	 js.executeScript("window.scrollBy(0, 150);");
+    	
     	 driver.findElement(gpscheckbox).click();
     	 driver.findElement(gpsmachinetextfield).sendKeys(TestDataGenerator.getRandomegps());
     	 driver.findElement(immobilsercheckbox).click();
     	 driver.findElement(immobilisertextfield).sendKeys(TestDataGenerator.getRandomemmobiliser());
-    	 js.executeScript("window.scrollBy(0, 150);");
+    
     	 driver.findElement(ledpanelcheckbox).click();
     	 driver.findElement(ledpaneltextfield).sendKeys(TestDataGenerator.getRandomLed(7));
-    	 js.executeScript("window.scrollBy(0, 150);");
-    	 
+    	
     	 
          
     }

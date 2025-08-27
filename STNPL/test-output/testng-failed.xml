@@ -5,7 +5,7 @@
     <classes>
       <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment">
         <methods>
-          <include name="CFR_002"/>
+          <include name="CFR004"/>
           <include name="teardown"/>
           <include name="setup"/>
         </methods>

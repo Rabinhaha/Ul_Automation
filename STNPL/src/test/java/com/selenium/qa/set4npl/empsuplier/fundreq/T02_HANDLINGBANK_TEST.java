@@ -134,7 +134,7 @@ public class T02_HANDLINGBANK_TEST extends Login{
 		
 	}
 	@Severity(SeverityLevel.CRITICAL)
-	@Test(priority=1,description="make submitted subsidy as eligible")
+	@Test(priority=6,description="make submitted subsidy as eligible")
 	public void elegiblereq() throws InterruptedException, AWTException
 	{
 		// Step 1: Capture the first chassis before action
@@ -162,7 +162,7 @@ public class T02_HANDLINGBANK_TEST extends Login{
 		
 	}
 	@Severity(SeverityLevel.CRITICAL)
-	   @Test(priority = 2,description="make submitted subsidy as incomplete")
+	   @Test(priority = 7,description="make submitted subsidy as incomplete")
 	public void incompletereq() throws InterruptedException
 	{
 		// Step 1: Capture the first chassis before action
@@ -189,7 +189,7 @@ public class T02_HANDLINGBANK_TEST extends Login{
 		
 		
 	}	@Severity(SeverityLevel.CRITICAL)
-	@Test(priority = 3,description="make submitted subsidy as rejected")
+	@Test(priority = 8,description="make submitted subsidy as rejected")
 
 	public void rejected() throws InterruptedException
 	{
@@ -214,7 +214,7 @@ public class T02_HANDLINGBANK_TEST extends Login{
 		    "❌ Submitted subsidy is not rejected .");
 		System.out.println("✅ sucessful rejection"); 
 	}	@Severity(SeverityLevel.CRITICAL)
-	@Test(priority=4,dependsOnMethods = {"elegiblereq"})
+	@Test(priority=9,dependsOnMethods = {"elegiblereq"})
 	public void reportreq() throws InterruptedException
 
 	{

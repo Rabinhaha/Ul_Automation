@@ -38,8 +38,20 @@ public class FileUploadPage {
     private By previewButton = By.xpath("//button[.='Preview']");
     private By submitButton = By.xpath("//button[.='Submit']");
     private By partnerintimationletter=By.id("upload-intimationLetter");
-  
+    private By uploadinstalledLEDPanelPhoto=By.id("upload-installedLEDPanelPhoto");
+    private By  uploadaccessoriesPaymentProof=By.id("upload-accessoriesPaymentProof");
+    private By uploadaccessoriesRequestLetter=By.id("upload-accessoriesRequestLetter");
     // Methods for File Upload
+    public void uploadaccessoriesfiles(String filePath) throws InterruptedException {
+        driver.findElement(uploadinstalledLEDPanelPhoto).sendKeys(filePath);
+        Thread.sleep(1000);
+        driver.findElement(uploadaccessoriesPaymentProof).sendKeys(filePath);
+        Thread.sleep(1000);
+        driver.findElement(uploadaccessoriesRequestLetter).sendKeys(filePath);
+        Thread.sleep(1000);
+        
+        
+    }
     public void uploadPtoRegistrationCertificate(String filePath) throws InterruptedException {
         driver.findElement(ptoRegistrationCertificate).sendKeys(filePath);
         Thread.sleep(1000);
