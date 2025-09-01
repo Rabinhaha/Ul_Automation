@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="3" total="4" passed="1" failed="0" skipped="0">
+<testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-09-01T14:52:50 NPT" name="Default suite" finished-at="2025-09-01T14:53:47 NPT" duration-ms="56707">
+  <suite started-at="2025-09-01T16:19:52 NPT" name="Default suite" finished-at="2025-09-01T16:20:29 NPT" duration-ms="36625">
     <groups>
     </groups>
-    <test started-at="2025-09-01T14:52:50 NPT" name="Default test" finished-at="2025-09-01T14:53:47 NPT" duration-ms="56707">
-      <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T02_HANDLINGBANK_TEST">
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T02_HANDLINGBANK_TEST@23f5b5dc]" started-at="2025-09-01T14:52:50 NPT" name="setup" finished-at="2025-09-01T14:53:07 NPT" duration-ms="16586" status="PASS">
+    <test started-at="2025-09-01T16:19:52 NPT" name="Default test" finished-at="2025-09-01T16:20:29 NPT" duration-ms="36625">
+      <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T03_AccessioriesSubsidy">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T03_AccessioriesSubsidy@147e2ae7]" started-at="2025-09-01T16:19:52 NPT" name="setup" finished-at="2025-09-01T16:19:56 NPT" duration-ms="3340" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="reportreq()[pri:9, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T02_HANDLINGBANK_TEST@23f5b5dc]" started-at="2025-09-01T14:53:07 NPT" name="reportreq" finished-at="2025-09-01T14:53:46 NPT" duration-ms="39786" status="PASS">
+        <test-method signature="TC_addAccessories()[pri:4, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T03_AccessioriesSubsidy@147e2ae7]" started-at="2025-09-01T16:19:56 NPT" name="TC_addAccessories" description="Add Accessories for last Not Installed row on last page" finished-at="2025-09-01T16:20:29 NPT" duration-ms="33104" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- reportreq -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T02_HANDLINGBANK_TEST@23f5b5dc]" started-at="2025-09-01T14:53:46 NPT" name="teardown" finished-at="2025-09-01T14:53:47 NPT" duration-ms="138" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- teardown -->
-      </class> <!-- com.selenium.qa.set4npl.empsuplier.fundreq.T02_HANDLINGBANK_TEST -->
+        </test-method> <!-- TC_addAccessories -->
+      </class> <!-- com.selenium.qa.set4npl.empsuplier.fundreq.T03_AccessioriesSubsidy -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
