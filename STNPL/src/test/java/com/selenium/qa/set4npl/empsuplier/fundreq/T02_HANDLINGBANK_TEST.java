@@ -16,6 +16,7 @@ import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.selenium.qa.Login;
+import com.selenium.qa.set4npl.objects.HandlingBankobjects;
 
 import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
@@ -24,7 +25,7 @@ import utils.ConfigReader;
 @Listeners({AllureTestNg.class})
 public class T02_HANDLINGBANK_TEST extends Login{
 	
-	
+	HandlingBankobjects 	HandlingBankobjects ;
 	String date=ConfigReader.get("date");
 	  public String userDir = System.getProperty("user.dir");
 	    public String filePath = userDir + File.separator + "pdffolder" + File.separator + "compat.pdf";
@@ -34,7 +35,7 @@ public class T02_HANDLINGBANK_TEST extends Login{
 		driver=initializeBrowserAndOpenApplication(ConfigReader.get("browser"));
 		driver=loginAs("handlingbank");
 		//WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-	
+	    HandlingBankobjects=new HandlingBankobjects(driver);
 		
 	}
 	@AfterMethod
@@ -121,7 +122,7 @@ public class T02_HANDLINGBANK_TEST extends Login{
 	public void reportsubsidy() throws InterruptedException
 
 	{
-		driver.findElement(By.xpath("//div[@role='tablist']/button[3]")).click();
+		HandlingBankobjects.clickacceptedbutton();
 		 JavascriptExecutor js = (JavascriptExecutor) driver;
 		driver.findElement(By.xpath("(//button[@class='flex items-center gap-1'])[1]")).click();
 		Thread.sleep(1000);
@@ -216,29 +217,26 @@ public class T02_HANDLINGBANK_TEST extends Login{
 		    "❌ Submitted subsidy is not rejected .");
 		System.out.println("✅ sucessful rejection"); 
 	}	@Severity(SeverityLevel.CRITICAL)
-	@Test(priority=9,dependsOnMethods = {"elegiblereq"})
+	@Test(priority=9)
 	public void reportreq() throws InterruptedException
 
 	{
-		
-		
+		HandlingBankobjects.clickacceptedbutton();
 		WebElement firstSubmittedId = driver.findElement(By.xpath("//table/tbody/tr[1]/td[3]"));
 		String oldChassis = firstSubmittedId.getText();
 		System.out.println("Old Chassis: " + oldChassis);
 
 		
-		incompletesubsidy();
+		reportsubsidy();
 
-		
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-		wait.until(ExpectedConditions.stalenessOf(firstSubmittedId)); // wait until old row is gone
-
-		
+		HandlingBankobjects.clickacceptedbutton();
+	//	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+	//	wait.until(ExpectedConditions.stalenessOf(firstSubmittedId)); // wait until old row is gone
+        Thread.sleep(2000);
+        driver.findElement(By.xpath("//div[@role='tablist']/button[3]")).click();
 		WebElement newFirstRow = driver.findElement(By.xpath("//table/tbody/tr[1]/td[3]"));
 		String newChassis = newFirstRow.getText();
-		System.out.println("New Chassis: " + newChassis);
-
-	
+		System.out.println("New Chassis: " + newChassis);	
 		Assert.assertNotEquals(newChassis, oldChassis, 
 		    "❌ Submitted subsidy is not reported .");
 		System.out.println("✅ sucessfully repoted"); 

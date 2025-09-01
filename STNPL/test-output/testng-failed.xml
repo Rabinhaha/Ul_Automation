@@ -3,18 +3,9 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment">
-        <methods>
-          <include name="CFR_002"/>
-          <include name="CFR006"/>
-          <include name="CFR004"/>
-          <include name="teardown"/>
-          <include name="setup"/>
-        </methods>
-      </class> <!-- com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReqWithFullPayment -->
       <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T02_HANDLINGBANK_TEST">
         <methods>
-          <include name="incompletereq"/>
+          <include name="reportreq"/>
           <include name="teardown"/>
           <include name="setup"/>
         </methods>
