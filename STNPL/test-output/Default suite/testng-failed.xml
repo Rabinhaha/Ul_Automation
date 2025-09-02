@@ -3,13 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T02_HANDLINGBANK_TEST">
+      <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T04_EMBaccessiories">
         <methods>
-          <include name="reportreq"/>
-          <include name="teardown"/>
+          <include name="clickEmbAccessioriesRejectFlow"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- com.selenium.qa.set4npl.empsuplier.fundreq.T02_HANDLINGBANK_TEST -->
+      </class> <!-- com.selenium.qa.set4npl.empsuplier.fundreq.T04_EMBaccessiories -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
