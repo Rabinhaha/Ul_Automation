@@ -3,9 +3,15 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
+      <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T03_AccessioriesSubsidy">
+        <methods>
+          <include name="TC_addAccessories"/>
+          <include name="setup"/>
+        </methods>
+      </class> <!-- com.selenium.qa.set4npl.empsuplier.fundreq.T03_AccessioriesSubsidy -->
       <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T02_HANDLINGBANK_TEST">
         <methods>
-          <include name="reportreq"/>
+          <include name="elegiblereq"/>
           <include name="teardown"/>
           <include name="setup"/>
         </methods>
