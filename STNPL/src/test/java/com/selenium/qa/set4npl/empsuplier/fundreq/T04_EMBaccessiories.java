@@ -25,7 +25,7 @@ public class T04_EMBaccessiories extends Login {
         embAccessioriesFlow.clickEyeBtn();
         embAccessioriesFlow.eligibleBtn();
         embAccessioriesFlow.commentHere();
-        embAccessioriesFlow.uploadFileById("upload-handlingBankAgreementDocument", "compat.pdf");
+        embAccessioriesFlow.uploadFileById( "compat.pdf");
         embAccessioriesFlow.acceptBtn();
     }
 
