@@ -19,7 +19,8 @@ public class T03_AccessioriesSubsidy extends Login {
 
     @BeforeClass
     public void setup() throws InterruptedException {
-        driver = initializeBrowserAndOpenApplication("firefox");
+
+        driver = initializeBrowserAndOpenApplication("chrome");
         driver = loginAs("supplier");
         accessioriesFlow = new AccessioriesSubsidy(driver);
     }
@@ -91,8 +92,10 @@ public class T03_AccessioriesSubsidy extends Login {
         System.out.println("✅ Successfully submitted Accessories request for last Not Installed row on last page.");
     }
 
-    @Test(priority = 4, description = "Add Accessories for last Not Installed row on last page")
+    @Test(priority = 10, description = "Add Accessories for last Not Installed row on last page",groups="submit accessories",dependsOnGroups="accessories")
     public void TC_addAccessories() throws InterruptedException {
         addAccessoriesFlowForLast();
+    
     }
+ 
 }
