@@ -1,25 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="3" total="4" passed="1" failed="0" skipped="0">
+<testng-results ignored="2" total="3" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-09-01T14:52:50 NPT" name="Default suite" finished-at="2025-09-01T14:53:47 NPT" duration-ms="56707">
+  <suite started-at="2025-09-02T13:20:34 NPT" name="Default suite" finished-at="2025-09-02T13:20:48 NPT" duration-ms="14384">
     <groups>
     </groups>
-    <test started-at="2025-09-01T14:52:50 NPT" name="Default test" finished-at="2025-09-01T14:53:47 NPT" duration-ms="56707">
-      <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T02_HANDLINGBANK_TEST">
-        <test-method is-config="true" signature="setup()[pri:0, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T02_HANDLINGBANK_TEST@23f5b5dc]" started-at="2025-09-01T14:52:50 NPT" name="setup" finished-at="2025-09-01T14:53:07 NPT" duration-ms="16586" status="PASS">
+    <test started-at="2025-09-02T13:20:34 NPT" name="Default test" finished-at="2025-09-02T13:20:48 NPT" duration-ms="14384">
+      <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T04_EMBaccessiories">
+        <test-method is-config="true" signature="setup()[pri:0, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T04_EMBaccessiories@448c8166]" started-at="2025-09-02T13:20:34 NPT" name="setup" finished-at="2025-09-02T13:20:42 NPT" duration-ms="8000" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="reportreq()[pri:9, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T02_HANDLINGBANK_TEST@23f5b5dc]" started-at="2025-09-01T14:53:07 NPT" name="reportreq" finished-at="2025-09-01T14:53:46 NPT" duration-ms="39786" status="PASS">
+        <test-method signature="clickEmbAccessioriesRejectFlow()[pri:0, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T04_EMBaccessiories@448c8166]" started-at="2025-09-02T13:20:42 NPT" name="clickEmbAccessioriesRejectFlow" description="reject" finished-at="2025-09-02T13:20:48 NPT" duration-ms="6186" status="PASS">
           <reporter-output>
           </reporter-output>
-        </test-method> <!-- reportreq -->
-        <test-method is-config="true" signature="teardown()[pri:0, instance:com.selenium.qa.set4npl.empsuplier.fundreq.T02_HANDLINGBANK_TEST@23f5b5dc]" started-at="2025-09-01T14:53:46 NPT" name="teardown" finished-at="2025-09-01T14:53:47 NPT" duration-ms="138" status="PASS">
-          <reporter-output>
-          </reporter-output>
-        </test-method> <!-- teardown -->
-      </class> <!-- com.selenium.qa.set4npl.empsuplier.fundreq.T02_HANDLINGBANK_TEST -->
+        </test-method> <!-- clickEmbAccessioriesRejectFlow -->
+      </class> <!-- com.selenium.qa.set4npl.empsuplier.fundreq.T04_EMBaccessiories -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
