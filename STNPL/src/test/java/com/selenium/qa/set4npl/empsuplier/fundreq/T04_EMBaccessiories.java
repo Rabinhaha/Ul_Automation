@@ -11,21 +11,24 @@ public class T04_EMBaccessiories extends Login {
 
     private WebDriver driver;
     private EmbAccessiories embAccessioriesFlow;
+    
 
     @BeforeClass
     public void setup() throws InterruptedException {
-        driver = initializeBrowserAndOpenApplication("firefox");
+        driver = initializeBrowserAndOpenApplication("chrome");
         driver = loginAs("handlingbank");
         embAccessioriesFlow = new EmbAccessiories(driver);
+        
     }
 
     @Test(description="eligible")
     public void clickEmbAccessioriesFlow() throws InterruptedException {
+    	
         embAccessioriesFlow.clickEmbAccessiories();
         embAccessioriesFlow.clickEyeBtn();
         embAccessioriesFlow.eligibleBtn();
         embAccessioriesFlow.commentHere();
-        embAccessioriesFlow.uploadFileById("upload-handlingBankAgreementDocument", "compat.pdf");
+        embAccessioriesFlow.uploadFileById( "compat.pdf");
         embAccessioriesFlow.acceptBtn();
     }
 
@@ -42,8 +45,8 @@ public class T04_EMBaccessiories extends Login {
     public void clickEmbAccessioriesRejectFlow() throws InterruptedException {
         embAccessioriesFlow.clickEmbAccessiories();
         embAccessioriesFlow.clickEyeBtn();
-        embAccessioriesFlow.clickFirstRejectBtn();  // Opens comment box
-        embAccessioriesFlow.commentReject();        // Add comment
-        embAccessioriesFlow.clickSecondRejectBtn(); // Confirm rejection
+        embAccessioriesFlow.clickFirstRejectBtn();  
+        embAccessioriesFlow.commentReject();        
+        embAccessioriesFlow.clickSecondRejectBtn(); 
     }
 }

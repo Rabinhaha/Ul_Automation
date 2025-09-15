@@ -11,6 +11,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import utils.ConfigReader;
+
 public class AccessioriesSubsidy {
 
     private WebDriver driver;
@@ -26,13 +28,7 @@ public class AccessioriesSubsidy {
         if (driver != null) driver.quit();
     }
 
-    public String generateRandomSerial(int length) {
-        String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-        Random rnd = new Random();
-        StringBuilder sb = new StringBuilder(length);
-        for (int i = 0; i < length; i++) sb.append(chars.charAt(rnd.nextInt(chars.length())));
-        return sb.toString();
-    }
+ 
 
     // Locators
     private By fundRequestBtn = By.xpath("//a[contains(text(),'Fund Request')]");
@@ -79,10 +75,10 @@ public class AccessioriesSubsidy {
     }
 
     // Accessories input methods
-    public void eTicket() { driver.findElement(eTicket).sendKeys(generateRandomSerial(12)); }
-    public void gps() { driver.findElement(gps).sendKeys(generateRandomSerial(8)); }
-    public void immobilizer() { driver.findElement(immobilizer).sendKeys(generateRandomSerial(8)); }
-    public void LED() { driver.findElement(LED).sendKeys(generateRandomSerial(10)); }
+    public void eTicket() { driver.findElement(eTicket).sendKeys(utils.TestDataGenerator.getRandometicketing()); }
+    public void gps() { driver.findElement(gps).sendKeys(utils.TestDataGenerator.getRandomegps()); }
+    public void immobilizer() { driver.findElement(immobilizer).sendKeys(utils.TestDataGenerator.getRandomemmobiliser()); }
+    public void LED() { driver.findElement(LED).sendKeys(utils.TestDataGenerator.getRandomLed(5)); }
     public void next() { driver.findElement(next).click(); }
     public void preview() { driver.findElement(preview).click(); }
     public void Submit() { driver.findElement(Submit).click(); }

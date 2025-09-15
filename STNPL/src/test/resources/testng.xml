@@ -8,6 +8,8 @@
         <classes>
             <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReq"/>
             <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T02_HANDLINGBANK_TEST"/>
+            <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T03_AccessioriesSubsidy"/>
+            <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T04_EMBaccessiories"/>
         </classes>
     </test>
 </suite>

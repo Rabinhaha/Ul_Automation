@@ -2,6 +2,7 @@ package com.selenium.qa.set4npl.empsuplier.fundreq;
 
 import java.awt.AWTException;
 import java.io.File;
+import java.time.Duration;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -9,6 +10,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -25,9 +27,10 @@ import io.qameta.allure.Severity;
 import io.qameta.allure.SeverityLevel;
 import utils.ConfigReader;
 @Listeners(utils.AllureTestListener.class)
- class T01_CreateFundReqWithFullPayment extends Login {
+ class T01_CreateFundReq extends Login {
     
     WebDriver driver;
+
     String insertedchassil;
     String date = ConfigReader.get("date");
    
@@ -190,7 +193,7 @@ import utils.ConfigReader;
           Assert.assertEquals(chassisNo,insertedchassil, "subsidy creation got failed ");
     }
     @Severity(SeverityLevel.CRITICAL)
-    @Test(priority = 1,description = "create subsidy with loan without accesories scrapping no")
+    @Test(priority = 1,description = "create subsidy with loan without accesories scrapping no",groups="accessories")
     public void CFR_002() throws InterruptedException
     {
        loan_withoutaccesories_subsidycreation();
@@ -213,7 +216,7 @@ import utils.ConfigReader;
        vehicleFinancingPage.enterVehicleCost(ConfigReader.get("vehiclecost"));
        vehicleFinancingPage.enterLoanNumber("5");
        Thread.sleep(2000);
-       vehicleFinancingPage.hirepurchasedropdown("1-2-3");
+       vehicleFinancingPage.hirepurchasedropdown(ConfigReader.get("hirepurchasename"));
       
        vehicleFinancingPage.enterPartnerBankBranch("NEPAL");
        Thread.sleep(2000);
@@ -281,7 +284,7 @@ public void CFR004() throws InterruptedException
         vehicleFinancingPage.enterVehicleCost(ConfigReader.get("vehiclecost"));
         vehicleFinancingPage.enterLoanNumber("5");
         Thread.sleep(2000);
-        vehicleFinancingPage.hirepurchasedropdown("1-2-3");
+        vehicleFinancingPage.hirepurchasedropdown(ConfigReader.get("hirepurchasename"));
        
         vehicleFinancingPage.enterPartnerBankBranch("NEPAL");
         Thread.sleep(2000);
@@ -314,7 +317,7 @@ public void CFR004() throws InterruptedException
         vehicleFinancingPage.enterVehicleCost(ConfigReader.get("vehiclecost"));
         vehicleFinancingPage.enterLoanNumber("5");
         Thread.sleep(2000);
-        vehicleFinancingPage.hirepurchasedropdown("1-2-3");
+        vehicleFinancingPage.hirepurchasedropdown(ConfigReader.get("hirepurchasename"));
        
         vehicleFinancingPage.enterPartnerBankBranch("NEPAL");
         Thread.sleep(2000);

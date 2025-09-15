@@ -109,9 +109,9 @@ public class EmbAccessiories {
     }
 
     // File upload
-    public void uploadFileById(String elementId, String fileName) throws InterruptedException {
+    public void uploadFileById( String fileName) throws InterruptedException {
         Thread.sleep(1000);
-        WebElement uploadFile = driver.findElement(By.id(elementId));
+        WebElement uploadFile = driver.findElement(By.id("upload-handlingBankAgreementDocument"));
         String userDir = System.getProperty("user.dir");
         String filePath = userDir + "\\pdffolder\\" + fileName;
         uploadFile.sendKeys(filePath);

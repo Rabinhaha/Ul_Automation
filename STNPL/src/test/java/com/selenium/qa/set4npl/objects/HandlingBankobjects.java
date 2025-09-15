@@ -5,6 +5,7 @@ import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HandlingBankobjects
@@ -22,6 +23,16 @@ public class HandlingBankobjects
 	    
 	    
 	private By  acceptedbutton= By.xpath("//div[@role='tablist']/button[3]") ;
+	   private By submittedIdFirstRow=By.xpath("//table/tbody/tr[1]/td[3]");
+	    // Methods for Basic Information
+	    
+	    
+	    public String submittedFirstRow()
+	    {
+	    	WebElement id=driver.findElement(submittedIdFirstRow);
+	    	String getid=id.getText();
+	    	return getid;
+	    }
 	public void clickacceptedbutton()
 	{
 		driver.findElement(acceptedbutton).click();

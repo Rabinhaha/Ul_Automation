@@ -7,6 +7,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -137,9 +138,10 @@ public class T02_HANDLINGBANK_TEST extends Login{
 		
 	}
 	@Severity(SeverityLevel.CRITICAL)
-	@Test(priority=6,description="make submitted subsidy as eligible")
+	@Test(priority=6,description="make submitted subsidy as eligible",groups="accessories")
 	public void elegiblereq() throws InterruptedException, AWTException
 	{
+		
 		// Step 1: Capture the first chassis before action
 		WebElement firstSubmittedId = driver.findElement(By.xpath("//table/tbody/tr[1]/td[3]"));
 		String oldChassis = firstSubmittedId.getText();
@@ -217,7 +219,7 @@ public class T02_HANDLINGBANK_TEST extends Login{
 		    "❌ Submitted subsidy is not rejected .");
 		System.out.println("✅ sucessful rejection"); 
 	}	@Severity(SeverityLevel.CRITICAL)
-	@Test(priority=9)
+	@Test(priority=9,description="make submitted subsidy as reported",groups="accessories")
 	public void reportreq() throws InterruptedException
 
 	{
@@ -225,10 +227,7 @@ public class T02_HANDLINGBANK_TEST extends Login{
 		WebElement firstSubmittedId = driver.findElement(By.xpath("//table/tbody/tr[1]/td[3]"));
 		String oldChassis = firstSubmittedId.getText();
 		System.out.println("Old Chassis: " + oldChassis);
-
-		
 		reportsubsidy();
-
 		HandlingBankobjects.clickacceptedbutton();
 	//	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 	//	wait.until(ExpectedConditions.stalenessOf(firstSubmittedId)); // wait until old row is gone
@@ -239,10 +238,10 @@ public class T02_HANDLINGBANK_TEST extends Login{
 		System.out.println("New Chassis: " + newChassis);	
 		Assert.assertNotEquals(newChassis, oldChassis, 
 		    "❌ Submitted subsidy is not reported .");
-		System.out.println("✅ sucessfully repoted"); 
+		System.out.println("✅ sucessfully reported"); 
 		
 	
 		
 	}
-
+	
 }
