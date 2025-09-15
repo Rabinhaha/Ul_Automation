@@ -10,6 +10,10 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+
 public class GuaranteeClaims {
 
     private WebDriver driver;
@@ -34,31 +38,73 @@ public class GuaranteeClaims {
     private By dueDateInput = By.name("dueDate");
     private By checkBox2 = By.id("loanAcceleration");
     private By nextBtn = By.xpath("//button[@type='submit']");
+    private By uploadRepaymentHistory=By.id("upload-repaymentHistory");
+    private By previewButton=By.xpath("//button[.='Preview']");
+   private By submitBtn = By.xpath("//button[normalize-space(.)='Submit']");
+   private By combobox=By.xpath("//button[@role='combobox']");
 
-    // Methods
 
-    public boolean hasPreInstalledNotReported() {
+
+    public boolean hasPreInstalledNotReported() throws AWTException 
+{
+    	driver.findElement(combobox).sendKeys("1");
+    	Robot robot = new Robot();
+        robot.keyPress(KeyEvent.VK_ENTER);   
+        robot.keyRelease(KeyEvent.VK_ENTER);
         List<WebElement> rows = driver.findElements(targetRows);
         return !rows.isEmpty();
     }
 
-    public void clickAllMatchingEyes() {
-        List<WebElement> rows = wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(targetRows));
-        System.out.println("Found " + rows.size() + " matching rows");
+    public void clickEyeForPreInstalledNotReported() {
+        // Always re-locate, don’t reuse old references
+    	
+    	
+        WebElement row = wait.until(
+            ExpectedConditions.visibilityOfElementLocated(targetRows)
+        );
 
-        for (WebElement row : rows) {
-            try {
-                WebElement eyeButton = row.findElement(By.xpath(".//button"));
-                wait.until(ExpectedConditions.elementToBeClickable(eyeButton)).click();
-                System.out.println("Clicked eye button for row");
-                wait.until(driver -> true); // tiny pause
-            } catch (Exception e) {
-                System.out.println("⚠️ Could not click eye button for a row: " + e.getMessage());
-                wait.until(driver -> true);
+        // find the eye button inside that row
+        WebElement eyeButton = row.findElement(By.xpath(".//button"));
+
+        // scroll into view to avoid click interception
+        ((JavascriptExecutor) driver)
+                .executeScript("arguments[0].scrollIntoView({block:'center'});", eyeButton);
+
+        // wait and click
+        wait.until(ExpectedConditions.elementToBeClickable(eyeButton)).click();
+
+        System.out.println("Clicked eye button for Pre-Installed + Not Reported row");
+    }
+    public void clickEyeForPreInstalledNotReportedWithPagination() throws InterruptedException {
+        while (true) {
+            List<WebElement> rows = driver.findElements(targetRows);
+            boolean clicked = false;
+
+            for (WebElement row : rows) {
+                String rowText = row.getText();
+                if ( (rowText.contains("Pre-Installed") || rowText.contains("Post-Installed"))
+                	    && rowText.contains("Not Reported")) {
+                    WebElement eyeButton = row.findElement(By.xpath(".//button"));
+                    ((JavascriptExecutor) driver)
+                        .executeScript("arguments[0].scrollIntoView({block:'center'});", eyeButton);
+                    wait.until(ExpectedConditions.elementToBeClickable(eyeButton)).click();
+                    System.out.println("Clicked eye button for Pre-Installed + Not Reported row");
+                    return; // exit after clicking
+                }
+            }
+
+            // Check if next button is available
+            List<WebElement> nextButtons = driver.findElements(By.xpath("//button[contains(text(),'Next') and not(@disabled)]"));
+            if (nextButtons.isEmpty()) {
+                System.out.println("Reached last page, target not found");
+                break;
+            } else {
+                nextButtons.get(0).click();
+                Thread.sleep(2000); // wait for page load
             }
         }
-        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 500);");
     }
+
 
     public void defaultBtn() {
         wait.until(ExpectedConditions.elementToBeClickable(defaultBtn)).click();
@@ -90,22 +136,9 @@ public class GuaranteeClaims {
     public void selectDueDate(String date) {
         // Click input to open calendar
         WebElement dateField = wait.until(ExpectedConditions.elementToBeClickable(dueDateInput));
-        dateField.click();
+        dateField.sendKeys(date);
 
-        // Wait for calendar popup to appear
-        By calendarPopup = By.xpath("//div[contains(@class,'calendar') or @role='dialog']");
-        wait.until(ExpectedConditions.visibilityOfElementLocated(calendarPopup));
-
-        // Extract day from yyyy-MM-dd
-        String day = date.split("-")[2];
-
-        // Click the day in the calendar
-        By dayLocator = By.xpath("//td[@role='gridcell' and text()='" + Integer.parseInt(day) + "']");
-        WebElement dayElement = wait.until(ExpectedConditions.elementToBeClickable(dayLocator));
-        dayElement.click();
-
-        // Wait until input field has the selected value
-        wait.until(ExpectedConditions.attributeToBe(dueDateInput, "value", date));
+      
     }
 
     public void checkBox2() {
@@ -115,5 +148,31 @@ public class GuaranteeClaims {
 
     public void nextBtn() {
         wait.until(ExpectedConditions.elementToBeClickable(nextBtn)).click();
+    }
+    public void rePaymentFile(String filePath)
+    {
+    	try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	// WebElement upload = wait.until(ExpectedConditions.visibilityOfElementLocated(uploadRepaymentHistory));
+   // wait.until(ExpectedConditions.elementToBeClickable(uploadRepaymentHistory)).sendKeys(filePath);
+    	driver.findElement(uploadRepaymentHistory).sendKeys(filePath);
+    }
+    public void previewButton()
+    {
+    	wait.until(ExpectedConditions.elementToBeClickable(previewButton)).click();
+    }
+    public void submitBtn()
+    {   
+    	  ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight);");
+    	 driver.findElement(submitBtn).click();;
+
+      
+
+       
+     
     }
 }

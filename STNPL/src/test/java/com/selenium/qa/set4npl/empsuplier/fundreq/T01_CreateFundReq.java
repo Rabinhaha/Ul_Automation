@@ -34,8 +34,8 @@ import utils.ConfigReader;
     String insertedchassil;
     String date = ConfigReader.get("date");
    
-    public String userDir = System.getProperty("user.dir");
-    public String filePath = userDir + File.separator + "pdffolder" + File.separator + "compat.pdf";
+    private String userDir = System.getProperty("user.dir");
+    private String filePath = userDir + File.separator + "pdffolder" + File.separator + "compat.pdf";
 
     // Page Object instances
     CreateFundRequestPage createFundPage;
