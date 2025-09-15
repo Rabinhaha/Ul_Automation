@@ -27,9 +27,11 @@ public class T05_GuaranteeClaims extends Login {
         guaranteeFlow = new GuaranteeClaims(driver);
     }
 
+
     @Test
     public void testGuaranteeFlow() throws InterruptedException, AWTException {
     	 
+
         if (guaranteeFlow.hasPreInstalledNotReported()) {
             guaranteeFlow.clickEyeForPreInstalledNotReported();;
        // guaranteeFlow.clickEyeForPreInstalledNotReportedWithPagination();
@@ -46,6 +48,7 @@ public class T05_GuaranteeClaims extends Login {
         guaranteeFlow.checkBox2();
         Thread.sleep(1000);
         guaranteeFlow.nextBtn();
+
         guaranteeFlow.rePaymentFile(filePath);
         Thread.sleep(1000);
         guaranteeFlow.previewButton();
@@ -56,5 +59,6 @@ public class T05_GuaranteeClaims extends Login {
         	    "Expected URL to end with /embs but got: " + currentUrl
         	);
        
+
     }
 }
