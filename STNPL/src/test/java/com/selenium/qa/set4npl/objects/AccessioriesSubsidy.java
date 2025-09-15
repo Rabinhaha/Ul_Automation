@@ -1,7 +1,6 @@
 package com.selenium.qa.set4npl.objects;
 
 import java.time.Duration;
-import java.util.List;
 import java.util.Random;
 
 import org.openqa.selenium.By;
@@ -11,7 +10,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import utils.ConfigReader;
 
@@ -76,8 +74,6 @@ public class AccessioriesSubsidy {
         }
     }
 
-
-
     // Accessories input methods
     public void eTicket() { driver.findElement(eTicket).sendKeys(utils.TestDataGenerator.getRandometicketing()); }
     public void gps() { driver.findElement(gps).sendKeys(utils.TestDataGenerator.getRandomegps()); }
@@ -88,12 +84,16 @@ public class AccessioriesSubsidy {
     public void Submit() { driver.findElement(Submit).click(); }
     public void embAccessories() { driver.findElement(embAccessories).click(); }
 
-    public void uploadFileById(String elementId, String fileName) throws InterruptedException {
-        Thread.sleep(1000);
-        WebElement uploadFile = driver.findElement(By.id(elementId));
+    public void uploadFileById(String elementId, String fileName) {
+        // wait for the upload element to be present and clickable instead of Thread.sleep
+        WebElement uploadFile = wait.until(ExpectedConditions.presenceOfElementLocated(By.id(elementId)));
+        wait.until(ExpectedConditions.elementToBeClickable(uploadFile));
+
         String userDir = System.getProperty("user.dir");
         String filePath = userDir + "\\pdffolder\\" + fileName;
         uploadFile.sendKeys(filePath);
-        Thread.sleep(2000);
+
+        // wait for upload to complete or element to reflect the chosen file
+        wait.until(ExpectedConditions.attributeContains(By.id(elementId), "value", fileName));
     }
 }
