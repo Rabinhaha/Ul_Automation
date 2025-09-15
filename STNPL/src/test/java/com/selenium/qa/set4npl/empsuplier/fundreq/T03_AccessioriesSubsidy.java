@@ -2,6 +2,7 @@ package com.selenium.qa.set4npl.empsuplier.fundreq;
 
 import java.util.List;
 
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,18 +12,20 @@ import org.testng.annotations.Test;
 
 import com.selenium.qa.Login;
 import com.selenium.qa.set4npl.objects.AccessioriesSubsidy;
-
+import com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReq;
 public class T03_AccessioriesSubsidy extends Login {
 
     private WebDriver driver;
     private AccessioriesSubsidy accessioriesFlow;
-
+   
     @BeforeClass
     public void setup() throws InterruptedException {
 
         driver = initializeBrowserAndOpenApplication("chrome");
         driver = loginAs("supplier");
         accessioriesFlow = new AccessioriesSubsidy(driver);
+       
+        
     }
 
     public void addAccessoriesFlowForLast() throws InterruptedException {
@@ -92,8 +95,9 @@ public class T03_AccessioriesSubsidy extends Login {
         System.out.println("✅ Successfully submitted Accessories request for last Not Installed row on last page.");
     }
 
-    @Test(priority = 10, description = "Add Accessories for last Not Installed row on last page",groups="submit accessories",dependsOnGroups="accessories")
+    @Test(priority = 10, description = "Add Accessories for last Not Installed row on last page",dependsOnGroups="accessories")
     public void TC_addAccessories() throws InterruptedException {
+    	
         addAccessoriesFlowForLast();
     
     }

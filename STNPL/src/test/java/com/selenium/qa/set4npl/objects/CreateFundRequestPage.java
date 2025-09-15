@@ -31,8 +31,7 @@ public class CreateFundRequestPage {
     private By idTypeDropDown = By.xpath("(//button[@type='button'])[5]/following-sibling::select[1]");
     private By idNumberField = By.xpath("//input[@name='idNumber']");
     private By addressField = By.xpath("//input[@name='address']");
-    
-    // Methods for Basic Information
+ 
     public void clickCreateFundRequestButton() {
         driver.findElement(createFundRequestBtn).click();
     }
