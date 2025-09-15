@@ -3,12 +3,12 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T04_EMBaccessiories">
+      <class name="com.selenium.qa.set4npl.empsuplier.fundreq.T05_GuaranteeClaims">
         <methods>
-          <include name="clickEmbAccessioriesRejectFlow"/>
+          <include name="testGuaranteeFlow"/>
           <include name="setup"/>
         </methods>
-      </class> <!-- com.selenium.qa.set4npl.empsuplier.fundreq.T04_EMBaccessiories -->
+      </class> <!-- com.selenium.qa.set4npl.empsuplier.fundreq.T05_GuaranteeClaims -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->
