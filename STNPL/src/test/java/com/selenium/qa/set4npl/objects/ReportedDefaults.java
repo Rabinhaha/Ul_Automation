@@ -126,7 +126,9 @@ public class ReportedDefaults {
     
     private By requestBtn = By.xpath("//button[contains(text(),'New Immobilizer Request')]");
     private By dateInput = By.name("reportedDate");
-    
+    private By comment=By.name("remark");
+    private By previewBtn2 = By.xpath("//button[contains(text(),'Preview')]");
+    private By submitBtn2 = By.xpath("//button[contains(text(),'Submit')]");
    
     
     //Method
@@ -140,6 +142,55 @@ public class ReportedDefaults {
     	WebElement dataField = wait.until(ExpectedConditions.elementToBeClickable(dateInput));
     	dataField.sendKeys(date);
     	
+    }
+    
+    public void comments() {
+    	driver.findElement(comment).sendKeys("hahahahahaha");
+    }
+    
+    public void uploadFileByIdInImmobilizer(String elementId, String fileName) {
+        // Construct full file path
+        String userDir = System.getProperty("user.dir");
+        String filePath = userDir + "\\pdffolder\\" + fileName;
+
+        // Locate the input element (even if hidden)
+        WebElement uploadInput = driver.findElement(By.id(elementId));
+
+        // Make it visible via JS (optional, but ensures Selenium can interact)
+        ((JavascriptExecutor) driver).executeScript(
+            "arguments[0].style.display='block'; arguments[0].style.visibility='visible';", uploadInput);
+
+        // Send the file path
+        uploadInput.sendKeys(filePath);
+    }
+    
+    public void previewBtn2() {
+  	  ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 2000);");
+  	  driver.findElement(previewBtn2).click();
+  	
+  }
+    
+    public void submitBtn2() {
+    	  ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 2000);");
+    	  driver.findElement(submitBtn2).click();
+    	
+    }
+    
+    //locators to check in guranteeclaims 
+    
+    private By guaranteeClaimsMenu = By.xpath("//a[contains(text(),'Guarantee Claims')]");
+    
+    
+    
+    
+    public void guranteeMenu() {
+    	driver.findElement( guaranteeClaimsMenu).click();
+    }
+    
+    public boolean isLoanIdPresent(String loanId) {
+        By loanCell = By.xpath("//table/tbody/tr/td[normalize-space()='" + loanId + "']");
+        wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table/tbody")));
+        return !driver.findElements(loanCell).isEmpty();
     }
     
     

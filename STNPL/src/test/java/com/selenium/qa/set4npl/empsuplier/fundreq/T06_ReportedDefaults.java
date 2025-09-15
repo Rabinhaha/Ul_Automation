@@ -2,6 +2,7 @@ package com.selenium.qa.set4npl.empsuplier.fundreq;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
@@ -64,10 +65,26 @@ public class T06_ReportedDefaults extends Login {
     	  reportedDefaults.immobilizerBtn();
     	  Thread.sleep(2000);
     	  reportedDefaults.selectDate(ConfigReader.get("date"));
+    	  Thread.sleep(2000);
+    	  reportedDefaults.uploadFileByIdInImmobilizer("upload-optionalDocument","compat.pdf");
+    	  Thread.sleep(2000);
+    	  reportedDefaults.previewBtn2();
+    	  Thread.sleep(1000);
+    	  reportedDefaults.submitBtn2();
     	  
-    	
-    	
+    	  }
+    
+    @Test(description = "Verify a specific Loan ID appears in Submitted tab")
+    public void verifySpecificLoanId() {
+        String expectedLoanId = "4565165312";   // change if needed
+        reportedDefaults.guranteeMenu();
+        Assert.assertTrue(
+        		reportedDefaults.isLoanIdPresent(expectedLoanId),
+            "Loan ID " + expectedLoanId + " was NOT found in Submitted tab!"
+        );
     }
+    
+    
     
     
 
