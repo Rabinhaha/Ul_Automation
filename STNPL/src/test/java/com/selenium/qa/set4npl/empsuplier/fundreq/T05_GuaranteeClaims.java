@@ -19,7 +19,7 @@ public class T05_GuaranteeClaims extends Login {
         guaranteeFlow = new GuaranteeClaims(driver);
     }
 
-    @Test
+    @Test(priority = 1,description = "partnerbank >> Embs >> pre-installed and do its flow  ")
     public void testGuaranteeFlow() throws InterruptedException {
         if (guaranteeFlow.hasPreInstalledNotReported()) {
             guaranteeFlow.clickAllMatchingEyes();
@@ -33,5 +33,6 @@ public class T05_GuaranteeClaims extends Login {
         guaranteeFlow.selectDueDate("01-02-2025");  // must be yyyy-MM-dd format
         guaranteeFlow.checkBox2();
         guaranteeFlow.nextBtn();
+        
     }
 }
