@@ -7,18 +7,18 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.JavascriptExecutor;
-import org.testng.annotations.BeforeClass;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-
 import com.selenium.qa.Login;
 import com.selenium.qa.set4npl.objects.AccessioriesSubsidy;
-import com.selenium.qa.set4npl.empsuplier.fundreq.T01_CreateFundReq;
+
 public class T03_AccessioriesSubsidy extends Login {
 
     private WebDriver driver;
     private AccessioriesSubsidy accessioriesFlow;
    
-    @BeforeClass
+    @BeforeMethod
     public void setup() throws InterruptedException {
 
         driver = initializeBrowserAndOpenApplication("chrome");
@@ -26,6 +26,11 @@ public class T03_AccessioriesSubsidy extends Login {
         accessioriesFlow = new AccessioriesSubsidy(driver);
        
         
+    }
+    @AfterMethod
+    public void tearDown()
+    {
+    	driver.quit();
     }
 
     public void addAccessoriesFlowForLast() throws InterruptedException {

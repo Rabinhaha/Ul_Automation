@@ -7,6 +7,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.io.File;
 import java.time.Duration;
 import java.util.List;
 
@@ -46,10 +47,12 @@ public class ReportedDefaults {
 
         List<WebElement> rows = driver.findElements(tableRows);
 
-        if (rows.size() >= 5) {
-            WebElement secondRow = rows.get(4);
-            By eyeBtnInSecondRow = By.xpath(".//*[name()='svg' and contains(@class,'lucide-eye')]/ancestor::button[1]");
-            WebElement eyeButton = secondRow.findElement(eyeBtnInSecondRow);
+        if (!rows.isEmpty()) {
+            // Get the last row (last index = size - 1)
+            WebElement lastRow = rows.get(rows.size() - 1);
+            
+            By eyeBtnInLastRow = By.xpath(".//*[name()='svg' and contains(@class,'lucide-eye')]/ancestor::button[1]");
+            WebElement eyeButton = lastRow.findElement(eyeBtnInLastRow);
 
             wait.until(ExpectedConditions.elementToBeClickable(eyeButton));
             eyeButton.click();
@@ -96,8 +99,8 @@ public class ReportedDefaults {
     
     public void uploadFileById(String elementId, String fileName) {
         // Construct full file path
-        String userDir = System.getProperty("user.dir");
-        String filePath = userDir + "\\pdffolder\\" + fileName;
+    	    String userDir = System.getProperty("user.dir");
+    	    String filePath = userDir + File.separator + "pdffolder" + File.separator + fileName;
 
         // Locate the input element (even if hidden)
         WebElement uploadInput = driver.findElement(By.id(elementId));
@@ -129,10 +132,15 @@ public class ReportedDefaults {
     private By comment=By.name("remark");
     private By previewBtn2 = By.xpath("//button[contains(text(),'Preview')]");
     private By submitBtn2 = By.xpath("//button[contains(text(),'Submit')]");
-   
+   private By nextBtn=By.xpath("//button[.='Next']");
     
     //Method
-    
+   
+   public void nextBtnForImmob() {
+   	driver.findElement(nextBtn
+   			).click();
+   }
+   
     public void immobilizerBtn() {
     	driver.findElement(requestBtn).click();
     }
@@ -167,7 +175,8 @@ public class ReportedDefaults {
     public void previewBtn2() {
   	  ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 2000);");
   	  driver.findElement(previewBtn2).click();
-  	
+  	WebElement previewField = wait.until(ExpectedConditions.elementToBeClickable(dateInput));
+	previewField.click();
   }
     
     public void submitBtn2() {

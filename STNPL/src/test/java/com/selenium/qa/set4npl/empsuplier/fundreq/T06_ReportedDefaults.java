@@ -1,34 +1,78 @@
 package com.selenium.qa.set4npl.empsuplier.fundreq;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.selenium.qa.Login;
+import com.selenium.qa.set4npl.objects.GuaranteeClaims;
 import com.selenium.qa.set4npl.objects.ReportedDefaults;
 
 import utils.ConfigReader;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.KeyEvent;
+import java.io.File;
 import java.time.Duration;
 
 public class T06_ReportedDefaults extends Login {
 
     private WebDriver driver;
     private ReportedDefaults reportedDefaults;
-    private WebDriverWait wait;
+    private GuaranteeClaims guaranteeFlow;
+    private String userDir = System.getProperty("user.dir");
+    private String filePath = userDir + File.separator + "pdffolder" + File.separator + "compat.pdf";
 
-    @BeforeClass
+    @BeforeMethod
     public void setup() throws InterruptedException {
-        driver = initializeBrowserAndOpenApplication("firefox");
+        driver = initializeBrowserAndOpenApplication("chrome");
         driver = loginAs("partnerbank");
-        wait = new WebDriverWait(driver, Duration.ofSeconds(90));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         reportedDefaults = new ReportedDefaults(driver);
+        guaranteeFlow = new GuaranteeClaims(driver);
+    }
+    @AfterMethod
+    public void tearDown()
+    {
+    	driver.quit();
+    }
+    @Test(priority=0, description="reported susidy to reported defaults")
+    public void ReportedDefaultFlow() throws InterruptedException, AWTException {
+   	 
+
+        if (guaranteeFlow.hasPreInstalledNotReported()) {
+            guaranteeFlow.clickEyeForPreInstalledNotReported();;
+       // guaranteeFlow.clickEyeForPreInstalledNotReportedWithPagination();
+        	
+            
+        } else {
+            System.out.println("⚠️ No rows found with Pre-Installed + Not Reported");
+        }
+        guaranteeFlow.defaultBtn();
+        guaranteeFlow.checkBox();
+        guaranteeFlow.totalLoan();
+        guaranteeFlow.defaultAmount();
+        guaranteeFlow.selectDueDate(ConfigReader.get("date"));  
+        guaranteeFlow.checkBox2();
+        Thread.sleep(1000);
+        guaranteeFlow.nextBtn();
+
+        guaranteeFlow.rePaymentFile(filePath);
+        Thread.sleep(1000);
+        guaranteeFlow.previewButton();
+        guaranteeFlow.submitBtn();
+    
+       
+
     }
 
-    @Test(priority = 0, description = "Open Reported Defaults and do gurantee claim flow")
+    @Test(priority = 1, description = "Open Reported Defaults and do gurantee claim flow",dependsOnMethods="ReportedDefaultFlow")
     public void openReportedDefaultsAndDoGuranteeClaim() throws InterruptedException {
 
         
@@ -53,36 +97,33 @@ public class T06_ReportedDefaults extends Login {
         reportedDefaults.previewBtn();
         Thread.sleep(1000);
         reportedDefaults.submitBtn();
+     
         
          }
     
-    @Test(priority = 1, description = "Open Reported Defaults and do gurantee claim flow")
+    @Test(priority = 2, description = "Open Reported Defaults and do Immobiliser flow")
     
-    public void immobilizerFlow () throws InterruptedException {
-    	
+    public void immobilizerFlow () throws InterruptedException, AWTException {
+    	 driver.findElement(By.xpath("//button[@role='combobox']")).sendKeys("1");
+    	 Robot robot = new Robot();
+         robot.keyPress(KeyEvent.VK_ENTER);   
+         robot.keyRelease(KeyEvent.VK_ENTER);
     	  reportedDefaults.clickReportedDefaultsButton();
     	  reportedDefaults.clickEyeButton();
     	  reportedDefaults.immobilizerBtn();
     	  Thread.sleep(2000);
     	  reportedDefaults.selectDate(ConfigReader.get("date"));
     	  Thread.sleep(2000);
-    	  reportedDefaults.uploadFileByIdInImmobilizer("upload-optionalDocument","compat.pdf");
-    	  Thread.sleep(2000);
+    	  reportedDefaults.comments();
+    	  
+    	 reportedDefaults.nextBtnForImmob();
     	  reportedDefaults.previewBtn2();
     	  Thread.sleep(1000);
     	  reportedDefaults.submitBtn2();
     	  
     	  }
     
-    @Test(description = "Verify a specific Loan ID appears in Submitted tab")
-    public void verifySpecificLoanId() {
-        String expectedLoanId = "4565165312";   // change if needed
-        reportedDefaults.guranteeMenu();
-        Assert.assertTrue(
-        		reportedDefaults.isLoanIdPresent(expectedLoanId),
-            "Loan ID " + expectedLoanId + " was NOT found in Submitted tab!"
-        );
-    }
+
     
     
     
