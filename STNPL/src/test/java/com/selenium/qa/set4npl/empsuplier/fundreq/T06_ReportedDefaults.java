@@ -2,6 +2,7 @@ package com.selenium.qa.set4npl.empsuplier.fundreq;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
@@ -31,17 +32,13 @@ public class T06_ReportedDefaults extends Login {
 
     @BeforeMethod
     public void setup() throws InterruptedException {
-        driver = initializeBrowserAndOpenApplication("chrome");
+        driver = initializeBrowserAndOpenApplication("firefox");
         driver = loginAs("partnerbank");
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         reportedDefaults = new ReportedDefaults(driver);
         guaranteeFlow = new GuaranteeClaims(driver);
     }
-    @AfterMethod
-    public void tearDown()
-    {
-    	driver.quit();
-    }
+   
     @Test(priority=0, description="reported susidy to reported defaults")
     public void ReportedDefaultFlow() throws InterruptedException, AWTException {
    	 
@@ -68,23 +65,25 @@ public class T06_ReportedDefaults extends Login {
         guaranteeFlow.previewButton();
         guaranteeFlow.submitBtn();
     
-       
+       //,dependsOnMethods="ReportedDefaultFlow"
 
     }
 
-    @Test(priority = 1, description = "Open Reported Defaults and do gurantee claim flow",dependsOnMethods="ReportedDefaultFlow")
+    @Test(priority = 1, description = "Open Reported Defaults and do gurantee claim flow")
     public void openReportedDefaultsAndDoGuranteeClaim() throws InterruptedException {
 
-        
+        Thread.sleep(2000);
         reportedDefaults.clickReportedDefaultsButton();
+        Thread.sleep(2000);
         reportedDefaults.clickEyeButton();
+        Thread.sleep(5000);
         reportedDefaults.clickNewGuaranteeClaimButton();
         reportedDefaults.clickPartnerBankCheckBox();
         reportedDefaults.publicAmount();
         reportedDefaults.checkBox2();
         reportedDefaults.claimedAmount();
         reportedDefaults.nextBtn();
-        Thread.sleep(1000);
+        Thread.sleep(100);
         // Upload multiple files
         reportedDefaults.uploadFileById("upload-affidavit", "compat.pdf");
         Thread.sleep(1000);
@@ -97,6 +96,9 @@ public class T06_ReportedDefaults extends Login {
         reportedDefaults.previewBtn();
         Thread.sleep(1000);
         reportedDefaults.submitBtn();
+        Thread.sleep(1500);
+
+        
      
         
          }
@@ -115,14 +117,38 @@ public class T06_ReportedDefaults extends Login {
     	  reportedDefaults.selectDate(ConfigReader.get("date"));
     	  Thread.sleep(2000);
     	  reportedDefaults.comments();
-    	  
-    	 reportedDefaults.nextBtnForImmob();
+    	  reportedDefaults.nextBtnForImmob();
     	  reportedDefaults.previewBtn2();
     	  Thread.sleep(1000);
     	  reportedDefaults.submitBtn2();
-    	  
-    	  }
+    	  reportedDefaults.clickPartnerBankArrow(); 
+      	  Thread.sleep(2000); 
+      	  reportedDefaults.logoutText();
+      	  Thread.sleep(5000); 
+      	 
+      	    }
     
+    @Test
+    public void handlingBankForwardCase() throws InterruptedException {
+        reportedDefaults.clickPartnerBankArrow();
+        Thread.sleep(2000);
+        reportedDefaults.logoutText();
+        Thread.sleep(5000);
+
+        loginAs("handlingbank");
+        reportedDefaults.guranteeClaimBtn();
+        Thread.sleep(2000);
+        reportedDefaults.clickeyeButton();
+        Thread.sleep(2000);
+        reportedDefaults.forwardBtn();
+        Thread.sleep(2000);
+        reportedDefaults.amountProvided();
+        Thread.sleep(2000);
+        reportedDefaults.commentHere();
+        reportedDefaults.uploadFileById("upload-handlingBankAgreementDocument", "compat.pdf");
+        Thread.sleep(1000);
+    }
+
 
     
     

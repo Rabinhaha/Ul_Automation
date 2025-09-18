@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -113,9 +114,19 @@ public class GuaranteeClaims {
     }
 
     public void checkBox() {
-        wait.until(ExpectedConditions.elementToBeClickable(checkBox)).click();
-        wait.until(driver -> true);
+        By locator = By.id("usGuarantee");
+        int retries = 3;
+        for (int i = 0; i < retries; i++) {
+            try {
+                wait.until(ExpectedConditions.elementToBeClickable(locator)).click();
+                return;
+            } catch (StaleElementReferenceException e) {
+                // retry if the element went stale
+            }
+        }
+        throw new RuntimeException("Failed to click usGuarantee checkbox after retries");
     }
+
 
     public void totalLoan() {
         WebElement loan = wait.until(ExpectedConditions.visibilityOfElementLocated(totalLoan));

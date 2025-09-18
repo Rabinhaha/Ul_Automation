@@ -32,7 +32,6 @@ public class ReportedDefaults {
     private By next = By.xpath("//button[@type='submit']");
     private By previewBtn = By.xpath("//button[contains(text(),'Preview')]");
     private By submitBtn = By.xpath("//button[contains(text(),'Submit')]");
-  
 
     // Click the Reported Defaults button smoothly
     public void clickReportedDefaultsButton() throws InterruptedException {
@@ -75,125 +74,103 @@ public class ReportedDefaults {
         ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 1500);"); // scroll after click
     }
     
-    
     public void publicAmount() throws InterruptedException {
-    	Thread.sleep(2000);
-    	driver.findElement(opa).sendKeys("20000000");
+        Thread.sleep(2000);
+        driver.findElement(opa).sendKeys("20000000");
     }
     
     public void checkBox2() throws InterruptedException {
-    	Thread.sleep(2000);
-    	driver.findElement(checkBox2).click();
+        Thread.sleep(2000);
+        driver.findElement(checkBox2).click();
     }
     
     public void claimedAmount() {
-    	driver.findElement(claimAmount).sendKeys("200000");
+        driver.findElement(claimAmount).sendKeys("200000");
     }
     
     public void nextBtn() throws InterruptedException {
-    	Thread.sleep(2000);
-    	driver.findElement(next).click();
+        Thread.sleep(2000);
+        driver.findElement(next).click();
     }
-    
 
-    
     public void uploadFileById(String elementId, String fileName) {
-        // Construct full file path
-    	    String userDir = System.getProperty("user.dir");
-    	    String filePath = userDir + File.separator + "pdffolder" + File.separator + fileName;
+        String userDir = System.getProperty("user.dir");
+        String filePath = userDir + File.separator + "pdffolder" + File.separator + fileName;
 
-        // Locate the input element (even if hidden)
-        WebElement uploadInput = driver.findElement(By.id(elementId));
+        By locator = By.id(elementId);
 
-        // Make it visible via JS (optional, but ensures Selenium can interact)
+        WebElement uploadInput = new WebDriverWait(driver, Duration.ofSeconds(10))
+                .until(ExpectedConditions.presenceOfElementLocated(locator));
+
         ((JavascriptExecutor) driver).executeScript(
-            "arguments[0].style.display='block'; arguments[0].style.visibility='visible';", uploadInput);
+                "arguments[0].style.display='block'; arguments[0].style.visibility='visible';", uploadInput);
 
-        // Send the file path
         uploadInput.sendKeys(filePath);
     }
-    
+
     public void previewBtn() {
-    	  ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 2000);");
-    	  driver.findElement(previewBtn).click();
-    	
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 2000);");
+        driver.findElement(previewBtn).click();
     }
     
     public void submitBtn() {
-  	  ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 2000);");
-  	  driver.findElement(submitBtn).click();
-  	
-  }
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 2000);");
+        driver.findElement(submitBtn).click();
+    }
     
-    //locators for immobilizer request
-    
+    // locators for immobilizer request
     private By requestBtn = By.xpath("//button[contains(text(),'New Immobilizer Request')]");
     private By dateInput = By.name("reportedDate");
     private By comment=By.name("remark");
     private By previewBtn2 = By.xpath("//button[contains(text(),'Preview')]");
     private By submitBtn2 = By.xpath("//button[contains(text(),'Submit')]");
-   private By nextBtn=By.xpath("//button[.='Next']");
+    private By nextBtn=By.xpath("//button[.='Next']");
     
-    //Method
-   
-   public void nextBtnForImmob() {
-   	driver.findElement(nextBtn
-   			).click();
-   }
+    // Method
+    public void nextBtnForImmob() {
+        driver.findElement(nextBtn).click();
+    }
    
     public void immobilizerBtn() {
-    	driver.findElement(requestBtn).click();
+        driver.findElement(requestBtn).click();
     }
     
     public void selectDate(String date) {
-    	
-    	WebElement dataField = wait.until(ExpectedConditions.elementToBeClickable(dateInput));
-    	dataField.sendKeys(date);
-    	
+        WebElement dataField = wait.until(ExpectedConditions.elementToBeClickable(dateInput));
+        dataField.sendKeys(date);
     }
     
     public void comments() {
-    	driver.findElement(comment).sendKeys("hahahahahaha");
+        driver.findElement(comment).sendKeys("hahahahahaha");
     }
     
     public void uploadFileByIdInImmobilizer(String elementId, String fileName) {
-        // Construct full file path
         String userDir = System.getProperty("user.dir");
         String filePath = userDir + "\\pdffolder\\" + fileName;
 
-        // Locate the input element (even if hidden)
         WebElement uploadInput = driver.findElement(By.id(elementId));
-
-        // Make it visible via JS (optional, but ensures Selenium can interact)
         ((JavascriptExecutor) driver).executeScript(
             "arguments[0].style.display='block'; arguments[0].style.visibility='visible';", uploadInput);
 
-        // Send the file path
         uploadInput.sendKeys(filePath);
     }
     
     public void previewBtn2() {
-  	  ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 2000);");
-  	  driver.findElement(previewBtn2).click();
-  	WebElement previewField = wait.until(ExpectedConditions.elementToBeClickable(dateInput));
-	previewField.click();
-  }
-    
-    public void submitBtn2() {
-    	  ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 2000);");
-    	  driver.findElement(submitBtn2).click();
-    	
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 2000);");
+        driver.findElement(previewBtn2).click();
+        WebElement previewField = wait.until(ExpectedConditions.elementToBeClickable(dateInput));
+        previewField.click();
     }
     
-    //locators to check in guranteeclaims 
+    public void submitBtn2() {
+        ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 2000);");
+        driver.findElement(submitBtn2).click();
+    }
     
     private By guaranteeClaimsMenu = By.xpath("//a[contains(text(),'Guarantee Claims')]");
     
-    
-    
-    
     public void guranteeMenu() {
-    	driver.findElement( guaranteeClaimsMenu).click();
+        driver.findElement(guaranteeClaimsMenu).click();
     }
     
     public boolean isLoanIdPresent(String loanId) {
@@ -201,6 +178,76 @@ public class ReportedDefaults {
         wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//table/tbody")));
         return !driver.findElements(loanCell).isEmpty();
     }
+    
+    // Updated arrowBtn() only
+    private By svgLocator =  By.xpath("//span[normalize-space()='PARTNER BANK']");
+    private By logOutBtn = (By.xpath("//div[normalize-space()='Logout']\r\n"
+    		+ ""));
+
+    public void clickPartnerBankArrow() {
+        driver.findElement(svgLocator).click();
+    }
+
+
+    
+    public void logoutText() {
+        wait.until(ExpectedConditions.elementToBeClickable(logOutBtn));
+        driver.findElement(logOutBtn).click();
+    }
+    
+    
+    //locators for handlingbank
+    
+    private By guaranteeClaim = By.xpath("//a[contains(text(),'Guarantee Claims')]");
+    private By tableRowsInHandlingBAnk = By.xpath("//table/tbody/tr");
+    private By forwardBtn = By.xpath("//button[contains(text(),'Forward')]");
+    private By amountToProvided = By.xpath("//input[@name='providedGuaranteeAmount']");
+    private By commentHere = By.xpath("//textarea[@name='comments']");
+    
+    
+    
+    public void guranteeClaimBtn() {
+    	driver.findElement(guaranteeClaim).click();
+    }
+    
+    public void clickeyeButton() throws InterruptedException {
+        wait.until(ExpectedConditions.visibilityOfElementLocated(tableRowsInHandlingBAnk));
+
+        List<WebElement> rows = driver.findElements(tableRows);
+
+        if (!rows.isEmpty()) {
+            // Get the last row (last index = size - 1)
+            WebElement lastRow = rows.get(rows.size() - 1);
+            
+            By eyeBtnInLastRow = By.xpath(".//*[name()='svg' and contains(@class,'lucide-eye')]/ancestor::button[1]");
+            WebElement eyeButton = lastRow.findElement(eyeBtnInLastRow);
+
+            wait.until(ExpectedConditions.elementToBeClickable(eyeButton));
+            eyeButton.click();
+
+            Thread.sleep(2000); // wait for modal/dialog to appear
+            ((JavascriptExecutor) driver).executeScript("window.scrollBy(0, 2000);"); // scroll after click
+        }
+    }
+    
+    public void forwardBtn() {
+    	driver.findElement(forwardBtn).click();
+    }
+    
+    public void amountProvided() {
+    	driver.findElement(amountToProvided).sendKeys("2000");
+    }
+    
+    public void commentHere() {
+    	driver.findElement(commentHere).sendKeys("hahahahahahaha");
+    }
+    
+    
+    
+    
+    
+   
+    
     
     
     
